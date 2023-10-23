@@ -3,6 +3,7 @@ import matna_background from '../assets/image/matna_background.svg';
 import styled from 'styled-components';
 import Header from '../components/common/Header';
 import Search from '../components/home/Search';
+import RecommendSearchWord from '../components/home/RecommendSearchWord';
 
 const Container = styled.div`
   height: 4280px;
@@ -26,6 +27,9 @@ const ContentContainer = styled.div`
   height: 3200px;
   border-radius: 100px 100px 0px 0px;
   background-color: #fff;
+  @media (max-width: 1200px) {
+    width: 1280px;
+  }
 `;
 
 const SearchContainer = styled.div`
@@ -38,6 +42,17 @@ const SearchContainer = styled.div`
   height: auto; /* Let it adjust to content height */
 `;
 
+const RecommendSearchWordContainer = styled.div`
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  
+  position: absolute;
+  top: 375px;
+  width: 100%; /* Make sure it spans the width of ImageContainer */
+  height: auto; /* Let it adjust to content height */
+
+`
+
 export default function Main() {
   return (
     <>
@@ -47,6 +62,9 @@ export default function Main() {
           <SearchContainer>
             <Search />
           </SearchContainer>
+          <RecommendSearchWordContainer>
+            <RecommendSearchWord />
+          </RecommendSearchWordContainer>
         </ImageContainer>
         <ContentContainer>x</ContentContainer>
       </Container>
