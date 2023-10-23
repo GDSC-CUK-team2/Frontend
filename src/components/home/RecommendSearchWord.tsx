@@ -30,21 +30,24 @@ display: flex;
 align-items: center;
 justify-content: center;
 `
+const Hash = styled.span`
+color : #E54444;
+`
 
 export default function RecommendSearchWord(){
     return(
         <Container>
             <WordContainer>
-                # 강남역
+                <Hash>#</Hash> 강남역
             </WordContainer>
             <WordContainer>
-                # 신촌역
+                <Hash>#</Hash> 신촌역
             </WordContainer>
             <WordContainer>
-                # 인천 시청역 
+                <Hash>#</Hash> 인천 시청역 
             </WordContainer>
             <WordContainer>
-                # 가톨릭대학교역
+                <Hash>#</Hash> 가톨릭대학교역
             </WordContainer>
         </Container>
     )
