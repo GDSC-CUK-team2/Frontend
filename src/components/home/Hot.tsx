@@ -9,8 +9,6 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 const Container = styled.div`
 width : 70vw;
 
-z-index : 999;
-
 `
 
 const Inst = styled.div`

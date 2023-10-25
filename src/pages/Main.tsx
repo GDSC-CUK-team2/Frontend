@@ -59,7 +59,7 @@ const HotContainer = styled.div`
   justify-content: center; /* Center horizontally */
   
   position: absolute;
-  top: 500px;
+  top: -80px;
   width: 100%; /* Make sure it spans the width of ImageContainer */
   height: auto; /* Let it adjust to content height */
 `
@@ -77,12 +77,12 @@ export default function Main() {
             <RecommendSearchWord />
           </RecommendSearchWordContainer>
 
-          <HotContainer>
+        </ImageContainer>
+        
+        <ContentContainer>
+        <HotContainer>
             <Hot />
           </HotContainer>
-        </ImageContainer>
-        <ContentContainer>
-
         </ContentContainer>
       </Container>
     </>
