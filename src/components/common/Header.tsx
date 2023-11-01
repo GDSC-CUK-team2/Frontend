@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
+import styled ,{keyframes} from 'styled-components';
 
 import logo from '../../assets/image/header_logo.svg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from '@fortawesome/free-solid-svg-icons';
-import UserSimple from '../../modals/UserSimple';
+import UserModal from '../../modals/UserModal';
 
 const HeaderContainer = styled.div`
   width: 77vw;
@@ -72,7 +72,10 @@ export default function Header() {
         <MyPage>마이페이지</MyPage>
 
         {/* 유저 아이콘 클릭시 */}
-        {view && <UserSimple onClose={close}/>}
+        {view && 
+        <UserModal onClose={close}/>
+
+        }
         <UserIcon onClick={open}>
           <FontAwesomeIcon icon={faUser} />
         </UserIcon>
