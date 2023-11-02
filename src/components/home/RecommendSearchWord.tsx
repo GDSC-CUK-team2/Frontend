@@ -13,33 +13,32 @@ const Container = styled.div`
 `;
 
 const WordContainer = styled.div`
-width : 105px;
+width : 100px;
 height : 15px;
 
-background: #FCFCFC;
 border: 0px;
-border-radius: 8px;
+border-radius: 16px;
 
+color : #fff;
 font-size : 12px;
-color : #9C9C9C;
+background : #E54444;
+
 
 padding : 10px;
-margin : 0px 10px;
+margin : 0px 23.3px;
 
 display: flex;
 align-items: center;
 justify-content: center;
 `
 const Hash = styled.span`
-color : #E54444;
+color : #fff;
 `
 
 export default function RecommendSearchWord(){
     return(
         <Container>
-            <WordContainer>
-                <Hash>#</Hash> 강남역
-            </WordContainer>
+            
             <WordContainer>
                 <Hash>#</Hash> 신촌역
             </WordContainer>
