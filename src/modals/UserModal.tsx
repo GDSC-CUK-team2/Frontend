@@ -57,28 +57,53 @@ const Top = styled.div`
 
 `
 
-const BBox = styled.div`
-width : 137px;
-height : 22px;
-
-padding : 17.5px 10px;
+const BBox = styled.button`
+width : 140px;
+height : 40px;
 
 font-size : 16px;
 
+padding : 10px 10px;
 
+margin : auto 0;
+
+border-radius : 40px;
+
+border : 0px;
+background : transparent;
+
+cursor : pointer;
+
+&:focus {
+    background : #e54545;
+  }
 `
 
-const SBox = styled.div`
-width : 54px;
-height : 22px;
+const SBox = styled.button`
+width : 70px;
+height : 40px;
 
-padding : 14px 0px;
+
+padding : 10px 0px;
 
 font-size : 16px;
-`
-const SBoxContent = styled.div`
-  display: flex;
-  align-items: center;
+
+margin : auto 0;
+
+border : 0px;
+background : transparent;
+border-radius : 40px;
+
+display : flex;
+justify-content : center;
+
+cursor : pointer;
+
+&:focus {
+    background : #e54545;
+  }
+
+
 `
 
 const LoginButton = styled.button`
@@ -128,9 +153,8 @@ export default function UserModal({onClose} : UserSimpleProps){
                     나의 별점/리뷰
                   </BBox>
                   <SBox>
-                    <SBoxContent>
-                      찜 <img src={heart_circle} alt='x' />
-                    </SBoxContent>
+                      <span>찜</span>
+                      <img src={heart_circle} alt='x' />
                   </SBox>
                 </Top>
                 

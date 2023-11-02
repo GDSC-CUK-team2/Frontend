@@ -2,8 +2,6 @@ import React from "react";
 import { styled } from "styled-components";
 
 import none_card from "../../assets/image/none_card.svg";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.div`
 width : 70vw;
