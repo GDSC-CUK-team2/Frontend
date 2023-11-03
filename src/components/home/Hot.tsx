@@ -6,14 +6,15 @@ import hot from "../../assets/image/hot.svg";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
+import heart from '../../assets/image/heart.svg';
+
 const Container = styled.div`
 width : 1400px;
 
 
-
 //1280px 이하면
 @media (max-width : 1400px){
-    width: 650px;
+    width: 700px;
 
 }
 `
@@ -74,6 +75,12 @@ width : auto;
 height : 180px;
 
 border-radius : 8px;
+position: relative;
+`
+const Heart = styled.img`
+position : absolute;
+bottom : 10px;
+right : 10px;
 `
 
 const ItemInfo = styled.div`
@@ -109,7 +116,7 @@ export default function Hot(){
                 <Div>
                 <Item>
                     <ItemImg>
-
+                        <Heart src={heart} alt='x' />
                     </ItemImg>
 
                     <ItemInfo>
@@ -124,6 +131,7 @@ export default function Hot(){
                 </Item>
                 <Item>
                     <ItemImg>
+                    <Heart src={heart} alt='x' />
 
                     </ItemImg>
 
@@ -140,6 +148,7 @@ export default function Hot(){
                 
                 <Item>
                     <ItemImg>
+                    <Heart src={heart} alt='x' />
 
                     </ItemImg>
 
@@ -159,6 +168,7 @@ export default function Hot(){
 
                 <Item>
                     <ItemImg>
+                    <Heart src={heart} alt='x' />
 
                     </ItemImg>
 
@@ -174,6 +184,7 @@ export default function Hot(){
                 </Item>
                 <Item>
                     <ItemImg>
+                    <Heart src={heart} alt='x' />
 
                     </ItemImg>
 

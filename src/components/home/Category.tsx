@@ -4,8 +4,14 @@ import { styled } from "styled-components";
 import none_card from "../../assets/image/none_card.svg";
 
 const Container = styled.div`
-width : 70vw;
+width : 1400px;
 
+
+//1400px 이하면
+@media (max-width : 1400px){
+    width: 700px;
+
+}
 `
 
 const Inst = styled.div`
@@ -23,15 +29,22 @@ img {
 
 `
 const ItemContainer = styled.div`
-display : flex;
 
-width : 1330px;
 `
+
 const Item = styled.div`
+display : inline-block;
 
+width : 320px;
 
-margin-right : 12px;
+margin : 20px 15px;
 
+//1400px 이하면
+@media (max-width : 1400px){
+    width: 250px;
+    margin : 0px 50px;
+
+}
 
 `
 
@@ -136,10 +149,67 @@ export default function Hot(){
                     </ItemAddress>
 
                 </Item>
-
-               
                 </ItemContainer>
+                <ItemContainer>
+                <Item>
+                    <ItemImg>
+                        <img src={none_card} alt='x' />
+                    </ItemImg>
 
+                    <ItemInfo>
+                        <Left>식당이름</Left>
+                    </ItemInfo>
+
+                    <ItemAddress>
+                        지역명 - 음식 카테고리표기
+                    </ItemAddress>
+
+                </Item>
+                <Item>
+                    <ItemImg>
+                        <img src={none_card} alt='x' />
+                    </ItemImg>
+
+                    <ItemInfo>
+                        <Left>식당이름</Left>
+                    </ItemInfo>
+
+                    <ItemAddress>
+                        지역명 - 음식 카테고리표기
+                    </ItemAddress>
+
+                </Item>
+
+                <Item>
+                    <ItemImg>
+                        <img src={none_card} alt='x' />
+                    </ItemImg>
+
+                    <ItemInfo>
+                        <Left>식당이름</Left>
+                    </ItemInfo>
+
+                    <ItemAddress>
+                        지역명 - 음식 카테고리표기
+                    </ItemAddress>
+
+                </Item>
+
+                <Item>
+                    <ItemImg>
+                        <img src={none_card} alt='x' />
+                    </ItemImg>
+
+                    <ItemInfo>
+                        <Left>식당이름</Left>
+                    </ItemInfo>
+
+                    <ItemAddress>
+                        지역명 - 음식 카테고리표기
+                    </ItemAddress>
+
+                </Item>
+                </ItemContainer>
             </Container>
         </>
 
