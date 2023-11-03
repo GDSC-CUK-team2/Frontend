@@ -7,8 +7,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const Container = styled.div`
-width : 70vw;
+width : 1400px;
 
+
+
+//1280px 이하면
+@media (max-width : 1400px){
+    width: 650px;
+
+}
 `
 
 const Inst = styled.div`
@@ -29,14 +36,35 @@ img {
 
 `
 const ItemContainer = styled.div`
-display : flex;
+
 `
+
+const Div = styled.div`
+    display : inline-block;
+
+    @media (max-width : 1400px){
+    display : flex;
+    justify-content : center;
+
+}
+
+`
+
 const Item = styled.div`
 
-width : 220px;
-height : 250px;
+display : inline-block;
+width : 250px;
+height : 270px;
 
-margin : 0px 24px;
+margin : 0px 15px;
+//1400px 이하면
+
+@media (max-width : 1400px){
+    width : 200px;
+    margin : 0px 10px;
+
+}
+
 `
 
 const ItemImg = styled.div`
@@ -78,6 +106,7 @@ export default function Hot(){
                     </span>
                 </Inst>
                 <ItemContainer>
+                <Div>
                 <Item>
                     <ItemImg>
 
@@ -108,6 +137,7 @@ export default function Hot(){
                     </ItemAddress>
 
                 </Item>
+                
                 <Item>
                     <ItemImg>
 
@@ -123,6 +153,10 @@ export default function Hot(){
                     </ItemAddress>
 
                 </Item>
+                </Div>
+
+                <Div>
+
                 <Item>
                     <ItemImg>
 
@@ -153,6 +187,7 @@ export default function Hot(){
                     </ItemAddress>
 
                 </Item> 
+                </Div>
                 </ItemContainer>
 
             </Container>
