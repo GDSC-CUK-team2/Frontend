@@ -10,10 +10,9 @@ const Container = styled.div`
 width : 1400px;
 
 
-
 //1280px 이하면
 @media (max-width : 1400px){
-    width: 650px;
+    width: 700px;
 
 }
 `
