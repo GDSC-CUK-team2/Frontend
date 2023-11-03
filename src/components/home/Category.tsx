@@ -1,21 +1,11 @@
 import React from "react";
 import { styled } from "styled-components";
 
-import hot from "../../assets/image/hot.svg";
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import none_card from "../../assets/image/none_card.svg";
 
 const Container = styled.div`
-width : 1400px;
+width : 70vw;
 
-
-
-//1280px 이하면
-@media (max-width : 1400px){
-    width: 650px;
-
-}
 `
 
 const Inst = styled.div`
@@ -23,12 +13,9 @@ const Inst = styled.div`
 span{
     display : flex;
     align-items : center;
-    color : #fff;
-
+    color : #E54444;
     font-size : 24px;
-    font-family : Pretendard Variable;
-
-    padding : 10px;
+    margin : 10px 0px;
 }
 img {
     margin-left : 10px;
@@ -36,59 +23,43 @@ img {
 
 `
 const ItemContainer = styled.div`
+display : flex;
 
+width : 1330px;
 `
-
-const Div = styled.div`
-    display : inline-block;
-
-    @media (max-width : 1400px){
-    display : flex;
-    justify-content : center;
-
-}
-
-`
-
 const Item = styled.div`
 
-display : inline-block;
-width : 250px;
-height : 270px;
 
-margin : 0px 15px;
-//1400px 이하면
+margin-right : 12px;
 
-@media (max-width : 1400px){
-    width : 200px;
-    margin : 0px 10px;
-
-}
 
 `
 
 const ItemImg = styled.div`
 /* 사진이 없어서 일단은 배경색으로 구현 */
-background : #E5E5E5;
 width : auto;
-height : 180px;
+
 
 border-radius : 8px;
+
+img{
+}
 `
 
 const ItemInfo = styled.div`
 display : flex;
 justify-content : space-between;
-padding : 5px 10px;
 `
 const Left = styled.div`
-color : #E54444;
+
+p{
+    font-weight : 500;
+}
+
+
 `
-const Right = styled.div`
-color : #9C9C9C;
-`
+
 const ItemAddress = styled.div`
-padding : 5px 10px;
 
 color : #9C9C9C;
 
@@ -101,93 +72,72 @@ export default function Hot(){
             <Container>
                 <Inst>
                     <span>
-                        요즘 인기있는 맛집이에요 <img src={hot} alt='x' />
+                        카테고리 이름
 
                     </span>
                 </Inst>
-                <ItemContainer>
-                <Div>
-                <Item>
-                    <ItemImg>
-
-                    </ItemImg>
-
-                    <ItemInfo>
-                        <Left>식당이름</Left>
-                        <Right>(0) 9.9  <FontAwesomeIcon icon={faStar} /> </Right>
-                    </ItemInfo>
-
-                    <ItemAddress>
-                        주소
-                    </ItemAddress>
-
-                </Item>
-                <Item>
-                    <ItemImg>
-
-                    </ItemImg>
-
-                    <ItemInfo>
-                        <Left>식당이름</Left>
-                        <Right>(0) 9.9  <FontAwesomeIcon icon={faStar} /> </Right>
-                    </ItemInfo>
-
-                    <ItemAddress>
-                        주소
-                    </ItemAddress>
-
-                </Item>
                 
+                <ItemContainer>
                 <Item>
                     <ItemImg>
-
+                        <img src={none_card} alt='x' />
                     </ItemImg>
 
                     <ItemInfo>
                         <Left>식당이름</Left>
-                        <Right>(0) 9.9  <FontAwesomeIcon icon={faStar} /> </Right>
                     </ItemInfo>
 
                     <ItemAddress>
-                        주소
-                    </ItemAddress>
-
-                </Item>
-                </Div>
-
-                <Div>
-
-                <Item>
-                    <ItemImg>
-
-                    </ItemImg>
-
-                    <ItemInfo>
-                        <Left>식당이름</Left>
-                        <Right>(0) 9.9  <FontAwesomeIcon icon={faStar} /> </Right>
-                    </ItemInfo>
-
-                    <ItemAddress>
-                        주소
+                        지역명 - 음식 카테고리표기
                     </ItemAddress>
 
                 </Item>
                 <Item>
                     <ItemImg>
-
+                        <img src={none_card} alt='x' />
                     </ItemImg>
 
                     <ItemInfo>
                         <Left>식당이름</Left>
-                        <Right>(0) 9.9  <FontAwesomeIcon icon={faStar} /> </Right>
                     </ItemInfo>
 
                     <ItemAddress>
-                        주소
+                        지역명 - 음식 카테고리표기
                     </ItemAddress>
 
-                </Item> 
-                </Div>
+                </Item>
+
+                <Item>
+                    <ItemImg>
+                        <img src={none_card} alt='x' />
+                    </ItemImg>
+
+                    <ItemInfo>
+                        <Left>식당이름</Left>
+                    </ItemInfo>
+
+                    <ItemAddress>
+                        지역명 - 음식 카테고리표기
+                    </ItemAddress>
+
+                </Item>
+
+                <Item>
+                    <ItemImg>
+                        <img src={none_card} alt='x' />
+                    </ItemImg>
+
+                    <ItemInfo>
+                        <Left>식당이름</Left>
+                    </ItemInfo>
+
+                    <ItemAddress>
+                        지역명 - 음식 카테고리표기
+                    </ItemAddress>
+
+                </Item>
+
+               
                 </ItemContainer>
 
             </Container>

@@ -7,12 +7,15 @@ import RecommendSearchWord from '../components/home/RecommendSearchWord';
 import Hot from '../components/home/Hot';
 
 const Container = styled.div`
-  height: 4280px;
+position : relative;
 `;
 
 const ImageContainer = styled.div`
+  position: absolute;
+
   /* Set a fixed height for the container */
   height: 1080px;
+  width : 100vw;
   overflow: hidden; /* Hide overflow content */
   background-image: url(${matna_background});
   background-position: center; /* Center the background image */
@@ -23,9 +26,10 @@ const ImageContainer = styled.div`
 
 const ContentContainer = styled.div`
   position: absolute;
+  
   top: 600px;
   width: 100vw;
-  height: 3200px;
+  height: 3000px;
   border-radius: 100px 100px 0px 0px;
   background-color: #fff;
   @media (max-width: 1200px) {
