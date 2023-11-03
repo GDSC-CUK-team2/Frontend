@@ -5,6 +5,7 @@ import Header from '../components/common/Header';
 import Search from '../components/home/Search';
 import RecommendSearchWord from '../components/home/RecommendSearchWord';
 import Hot from '../components/home/Hot';
+import Category from '../components/home/Category';
 
 const Container = styled.div`
 position : relative;
@@ -68,6 +69,20 @@ const HotContainer = styled.div`
   height: auto; /* Let it adjust to content height */
 `
 
+const CategoryContainer = styled.div`
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  
+  position: absolute;
+  top : 300px;
+  @media (max-width: 1400px) {
+    top : 550px;
+  }
+  width: 100%; /* Make sure it spans the width of ImageContainer */
+  height: auto; /* Let it adjust to content height */
+`
+
+
 export default function Main() {
   return (
     <>
@@ -86,7 +101,11 @@ export default function Main() {
         <ContentContainer>
         <HotContainer>
             <Hot />
-          </HotContainer>
+        </HotContainer>
+
+        <CategoryContainer>
+          <Category />
+        </CategoryContainer>
         </ContentContainer>
       </Container>
     </>
