@@ -41,7 +41,7 @@ export default function SignUp() {
         };
         const config = {};
         axios
-            .post(`http://localhost:8000/api/auth/signup`, data, config)
+            .post(`http://34.64.153.218:8080/api/auth/signup`, data, config)
             .then((response) => {
                 console.log(`Response : ${response}`);
                 console.log(`Response : ${data}`);
@@ -50,7 +50,7 @@ export default function SignUp() {
             })
             .catch((error) => {
                 console.log(error)
-                
+                console.log(data)
                 
             });
 
