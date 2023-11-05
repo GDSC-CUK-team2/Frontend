@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import { useParams } from "react-router-dom";
 import TopNavBar from "../components/common/TopNavBar";
 import ResultCard from "../components/search/ResultCard";
@@ -57,6 +58,22 @@ const SubInfos = styled.div`
 
 export default function Search() {
     const { keyword } = useParams();
+    
+    useEffect(()=>{
+        console.log('asdf');
+        async function getInfo(){
+            const result = await axios.get(
+                'http://34.64.153.218:8080/api/restaurants'
+            )
+            .then((result)=>{
+                console.log(JSON.stringify(result));
+            })
+            .catch((error)=>{
+                console.log(error);
+            })
+        }
+        getInfo();
+    })
 
     return (
         <>
