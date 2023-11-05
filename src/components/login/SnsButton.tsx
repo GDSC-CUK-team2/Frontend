@@ -29,7 +29,7 @@ span{
 export default function SnsButton({background , text} : SnsButtonProps){
     return(
         <Container background={background}>
-            <span>{text} 으로 계속하기</span>
+            <span>{text} 계속하기</span>
         </Container>
     )
 }
