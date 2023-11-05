@@ -28,17 +28,18 @@ const Container = styled.div`
   width: 400px;
   height: 800px;
 
+  border-radius : 40px 0px 0px 40px;
   
   position: absolute;
   top: 7%;
   right: 11%;
 
   background-color: #FCFCFC;
-  border-radius: 8px 0px 0px 8px;
 
   animation: ${slideIn} 0.5s ease-in-out; // 슬라이딩 애니메이션 적용
 
 `
+
 const Top = styled.div`
   position: absolute;
   top: 1%;
@@ -83,7 +84,6 @@ const SBox = styled.button`
 width : 70px;
 height : 40px;
 
-
 padding : 10px 0px;
 
 font-size : 16px;
@@ -107,9 +107,7 @@ cursor : pointer;
 `
 
 const LoginButton = styled.button`
-  position: absolute;
-  top: 90%;
-  right: 5%;
+  
 
   width : 371px;
   height : 60px;
@@ -119,6 +117,9 @@ const LoginButton = styled.button`
 
   color : #fff;
   background : #e55444;
+
+  margin: 720px auto; /* LoginButton을 하단으로 내립니다. */
+
 
 `
 
