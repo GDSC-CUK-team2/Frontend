@@ -6,6 +6,7 @@ import matna from '../assets/image/login/matna.svg';
 import facebook from '../assets/image/login/facebook.svg';
 import kakao from '../assets/image/login/kakao.svg';
 import apple from '../assets/image/login/apple.svg';
+import SignUp from "./SignUpModal";
 
 interface UserSimpleProps {
     onClose: () => void;
@@ -78,9 +79,21 @@ export default function LoginModal({onClose} : UserSimpleProps){
         }
     };
 
+  
+      // 로그인 창을 여는 상태
+      const [viewLogin,setViewLogin] = useState<boolean>(false);
+  
+      const open = () => {
+          setViewLogin(true);
+      }
+  
+      const close = () =>{
+          setViewLogin(false);
+      }
     return(
         <ModalBackground onClick={closeModal}>
             <Container>
+              {viewLogin && <SignUp onClose={close}/>}
                 <TitleContainer>
                     <BP>로그인하기</BP>
                     <SP>로그인 하면 탐색기록을</SP>
@@ -90,7 +103,8 @@ export default function LoginModal({onClose} : UserSimpleProps){
                 <ButtonContainer>
                   <SnsButton background={'#e54545'} text={'Matna 계정으로'} logo={matna}/>
                     <SignUpContainer>
-                      <button>회원가입 하기 </button>
+                      <button onClick={open} >회원가입 하기 </button>
+
                     </SignUpContainer>
                     <SnsButton background={'#4253B8'} text={'페이스북으로'} logo={facebook} />
                     <SnsButton background={'#FCE74F'} text={'카카오톡으로'} logo={kakao} />

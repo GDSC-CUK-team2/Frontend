@@ -6,7 +6,120 @@ import { styled, css } from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router";
 
-export default function SignUp() {
+interface SignUpModalProps {
+    onClose: () => void;
+  }
+
+const ModalBackground = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+`;
+
+const Container = styled.div`
+    width: 700px;
+    height: 750px;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+
+    background-color: #FFFFFF;
+    border-radius: 15px;
+`
+const TitleContainer = styled.div`
+margin : 0px 0px 50px 0px;
+`
+const BP = styled.p`
+font-weight : 800;
+font-size : 32px;
+
+color : #000;
+
+`
+const SP =styled.p`
+font-size : 16px;
+
+color : #000;
+
+`
+const InputContainer = styled.div`
+width : 505px;
+
+margin: 20px auto;
+text-align : center;
+
+display : flex;
+justify-content: space-between; /* 간격 */
+color : #000;
+`
+
+const Name = styled.span`
+    padding : 15px;
+`
+
+const Must = styled.span`
+    color : #E54444;
+`
+
+const Form = styled.form`
+
+`
+
+const Input = styled.input`
+width : 317px;
+height : 42px;
+
+border : 0px;
+background : #f1f1f1;
+
+
+&::placeholder{
+    font-family: tway, sans-serif, Arial;
+	}
+
+//인풋 창 포커스
+&:focus {
+    //클릭 했을때 기본(?) 선 안나오게.
+    outline: none !important;
+
+    border: 2px solid blue;
+    }
+`
+
+const ButtonContainer = styled.div`
+margin: 100px auto;
+text-align : center;
+`
+
+const SubmitButton = styled.button`
+//기본 크기가 input > button
+width : 200px;
+height : 35px;
+
+font-size : 12px;
+
+margin : 10px;
+padding : 5px;
+
+color: #ffffff;
+border : 2px solid #e54545;
+border-radius : 5px;
+background-color : #e54545;
+
+
+&:hover {
+
+    cursor : pointer;
+    }
+`
+
+export default function SignUpModal({onClose} : SignUpModalProps) {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
@@ -37,11 +150,11 @@ export default function SignUp() {
         const data = {
             email: email,
             password: password,
-            name: nickname,
+            nickname: nickname,
         };
         const config = {};
         axios
-            .post(`http://neotrinity.kro.kr:8080/api/auth/signup`, data, config)
+            .post(`http://34.64.153.218:8080/api/auth/signup`, data, config)
             .then((response) => {
                 console.log(`Response : ${response}`);
                 console.log(`Response : ${data}`);
@@ -56,20 +169,29 @@ export default function SignUp() {
 
     };
 
+    // 모달을 닫기 위한 상태
+    const closeModal = (e: React.MouseEvent) => {
+        const target = e.target as HTMLElement;
+        if (target === e.currentTarget) {
+            onClose(); // 배경 클릭 시 모달 닫기
+        }
+    };
+
     return (
 
-
+    <ModalBackground>
         <Container>
-            <Header />
-
+                <TitleContainer>
+                    <BP>회원가입</BP>
+                    <SP>새로운 계정 정보를 입력해주세요</SP>
+                    
+                </TitleContainer>
             {/* 아이디 */}
+            <Form>
+
             <InputContainer >
 
-                <Form>
-
-                    <Div>
-                        <P>이메일</P>
-                    </Div>
+                    <Name>이메일 <Must>*</Must></Name> 
 
                     <Input 
                         placeholder='이메일를 입력해주세요'
@@ -77,15 +199,15 @@ export default function SignUp() {
                         value={email}
                         onChange={onInputChange} />
 
-                </Form>
             </InputContainer>
+            </Form>
 
             {/* 비밀번호 */}
+            <Form>
+
             <InputContainer >
-                <Form>
-                    <Div>
-                        <P>비밀번호</P>
-                    </Div>
+                <Name>비밀번호 <Must>*</Must></Name> 
+
 
                     <Input 
                         placeholder='비밀번호를 입력해주세요'
@@ -93,16 +215,14 @@ export default function SignUp() {
                         value={password}
                         onChange={onInputChange} />
 
-                </Form>
             </InputContainer>
+            </Form>
+            <Form>
 
             <InputContainer >
 
-                <Form>
-
-                    <Div>
-                        <P>닉네임</P>
-                    </Div>
+                <Name>닉네임 <Must>*</Must></Name> 
+        
 
                     <Input
                         placeholder='닉네임를 입력해주세요'
@@ -110,8 +230,9 @@ export default function SignUp() {
                         value={nickname}
                         onChange={onInputChange} />
 
-                </Form>
             </InputContainer>
+            </Form>
+
 
             <ButtonContainer>
 
@@ -121,112 +242,8 @@ export default function SignUp() {
 
             </ButtonContainer>
         </Container>
-
+    </ModalBackground>
     )
 }
 
 
-const Container = styled.div`
-width : 550px;
-height : 550px;
-
-font-family: arial;
-font-size: 24px;
-
-margin: 0 auto;
-padding : 10px;
-
-border : 2px solid #e2e2e2;
-
-position : relative;
-top:5vh;
-
-display : flex;
-flex-direction : column;
-justify-content: space-around;
-`
-
-const InputContainer = styled.div`
-
-margin: 0 auto;
-text-align : center;
-
-`
-
-const Div = styled.div`
-margin:0px;
-border : 0px;
-
-`
-
-const P = styled.p`
-font-size : 12px;
-text-align : left;
-
-/* 상 오 하 왼 */
-margin : 0px 0px 0px 0px;
-
-color : #212221;
-
-font-family: tway, sans-serif, Arial;
-font-weight : bold;
-
-`
-
-const Form = styled.form`
-
-`
-
-const Input = styled.input`
-width : 300px;
-height : 30px;
-
-margin : 10px;
-
-border : 2px solid #e2e2e2;
-padding : 0px;
-
-&::placeholder{
-    font-family: tway, sans-serif, Arial;
-	}
-
-//인풋 창 포커스
-&:focus {
-    //클릭 했을때 기본(?) 선 안나오게.
-    outline: none !important;
-
-    border: 2px solid blue;
-    }
-`
-
-const ButtonContainer = styled.div`
-margin: 0 auto;
-text-align : center;
-`
-
-const SubmitButton = styled.button`
-//기본 크기가 input > button
-width : 200px;
-height : 35px;
-
-font-size : 12px;
-
-margin : 10px;
-padding : 5px;
-
-background-color: #ffffff;
-border : 2px solid #033bfa;
-border-radius : 5px;
-color : #033bfa;
-
-font-family: tway, sans-serif, Arial;
-
-&:hover {
-
-    background-color: #033bfa;
-    border : 2px solid #ffffff;
-    color : #ffffff;
-
-    cursor : pointer;
-    }
-`

@@ -45,16 +45,10 @@ margin : 0px;
 
 export default function SnsButton({background , text, logo} : SnsButtonProps){
 
-    const [logoSrc,setLogoSrc] = useState<string>('');
 
-    useEffect(()=>{
-        setLogoSrc(logo);
-    },[])
-
-    console.log(logoSrc)
     return(
         <Container background={background}>
-                <Logo src={logoSrc} alt='x' />
+                <Logo src={logo} alt='x' />
                 <Line src={line} alt='x' /> 
                 <span>{text} 계속하기</span>
         </Container>

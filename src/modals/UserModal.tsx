@@ -142,6 +142,7 @@ export default function UserModal({onClose} : UserSimpleProps){
     const close = () =>{
         setViewLogin(false);
     }
+    
     return(
         <ModalBackground onClick={closeModal}>
             <Container>
