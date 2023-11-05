@@ -37,11 +37,11 @@ export default function SignUp() {
         const data = {
             email: email,
             password: password,
-            nickname: nickname,
+            name: nickname,
         };
         const config = {};
         axios
-            .post(`http://34.64.153.218:8080/api/auth/signup`, data, config)
+            .post(`http://neotrinity.kro.kr:8080/api/auth/signup`, data, config)
             .then((response) => {
                 console.log(`Response : ${response}`);
                 console.log(`Response : ${data}`);

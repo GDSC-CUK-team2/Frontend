@@ -2,6 +2,11 @@ import React ,{useState} from "react";
 import { styled } from "styled-components";
 import SnsButton from "../components/login/SnsButton";
 
+import matna from '../assets/image/login/matna.svg';
+import facebook from '../assets/image/login/facebook.svg';
+import kakao from '../assets/image/login/kakao.svg';
+import apple from '../assets/image/login/apple.svg';
+
 interface UserSimpleProps {
     onClose: () => void;
   }
@@ -50,20 +55,19 @@ const ButtonContainer = styled.div`
 `
 const SignUpContainer = styled.div`
 
-margin : 0 auto;
+margin : 0px auto 30px;
 
 button{
   background : transparent;
   border: none; /* 모든 border 제거 */
   border-bottom: 0.1px solid #646464; /* 아래쪽 border 추가 */}
 
-  
-
   width : 97px;
   height : 14px;
 
   font-size : 12px;
 `
+
 export default function LoginModal({onClose} : UserSimpleProps){
 
     // 모달을 닫기 위한 상태
@@ -84,17 +88,17 @@ export default function LoginModal({onClose} : UserSimpleProps){
                 </TitleContainer>
 
                 <ButtonContainer>
-                    <SnsButton background={'#4253B8'} text={'페이스북으로'} />
-                    <SnsButton background={'#FCE74F'} text={'카카오톡으로'} />
-                    <SnsButton background={'#000000'} text={'Apple 로'} />
-                    <SnsButton background={'#e54545'} text={'Matna 계정으로'} />
+                  <SnsButton background={'#e54545'} text={'Matna 계정으로'} logo={matna}/>
+                    <SignUpContainer>
+                      <button>회원가입 하기 </button>
+                    </SignUpContainer>
+                    <SnsButton background={'#4253B8'} text={'페이스북으로'} logo={facebook} />
+                    <SnsButton background={'#FCE74F'} text={'카카오톡으로'} logo={kakao} />
+                    <SnsButton background={'#000000'} text={'Apple 로'} logo={apple} />
 
                 </ButtonContainer>
 
-                <SignUpContainer>
-                <button>회원가입 하기 </button>
-                  
-                </SignUpContainer>
+                
             </Container>
         </ModalBackground>
     )
