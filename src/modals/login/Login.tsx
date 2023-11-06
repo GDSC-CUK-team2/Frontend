@@ -4,6 +4,7 @@ import React, { useState} from "react";
 import { styled, css } from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import { setCookie } from "../../cookie/Cookie";
 
 interface LoginProps {
     onClose: () => void;
@@ -60,10 +61,6 @@ color : #000;
 
 const Name = styled.span`
     padding : 15px;
-`
-
-const Must = styled.span`
-    color : #E54444;
 `
 
 const Form = styled.form`
@@ -123,10 +120,9 @@ export default function Login({onClose} : LoginProps) {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
-        nickname: "",
     });
 
-    const { email, password, nickname } = formData;
+    const { email, password } = formData;
 
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -154,10 +150,15 @@ export default function Login({onClose} : LoginProps) {
         axios
             .post(`http://34.64.153.218:8080/api/auth/login`, data, config)
             .then((response) => {
-                console.log(JSON.stringify(response.data.accessToken ));
-                sessionStorage.setItem('token',response.data.accessToken);
+                console.log(JSON.stringify(data))
+                console.log(JSON.stringify(response.data ));
 
-                window.location.replace("/")
+                setCookie("token", `JWT ${response.data.accessToken}`, {
+                    path: "/",
+                    sameSite: "strict",
+                });
+                
+                // window.location.replace("/")
                 
             })
             .catch((error) => {

@@ -54,7 +54,7 @@ const Top = styled.div`
   color : #4C4C4C;
 
   display : flex;
-  align-itmes : center;
+  align-items : center;
 
 `
 

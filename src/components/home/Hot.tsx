@@ -114,6 +114,7 @@ export default function Hot(){
                 </Inst>
                 <ItemContainer>
                 <Div>
+
                 <Item>
                     <ItemImg>
                         <Heart src={heart} alt='x' />
@@ -129,6 +130,7 @@ export default function Hot(){
                     </ItemAddress>
 
                 </Item>
+                
                 <Item>
                     <ItemImg>
                     <Heart src={heart} alt='x' />
