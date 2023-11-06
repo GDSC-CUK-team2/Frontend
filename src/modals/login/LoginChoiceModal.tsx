@@ -1,12 +1,13 @@
 import React ,{useState} from "react";
 import { styled } from "styled-components";
-import SnsButton from "../components/login/SnsButton";
+import SnsButton from "../../components/login/SnsButton";
 
-import matna from '../assets/image/login/matna.svg';
-import facebook from '../assets/image/login/facebook.svg';
-import kakao from '../assets/image/login/kakao.svg';
-import apple from '../assets/image/login/apple.svg';
-import SignUp from "./SignUpModal";
+import matna from '../../assets/image/login/matna.svg';
+import facebook from '../../assets/image/login/facebook.svg';
+import kakao from '../../assets/image/login/kakao.svg';
+import apple from '../../assets/image/login/apple.svg';
+import SignUp from "../SignUpModal";
+import Login from './Login'
 
 interface UserSimpleProps {
     onClose: () => void;
@@ -80,20 +81,34 @@ export default function LoginModal({onClose} : UserSimpleProps){
     };
 
   
-      // 로그인 창을 여는 상태
-      const [viewLogin,setViewLogin] = useState<boolean>(false);
+      // 회원가입 창을 여는 상태
+      const [viewSignUp,setViewSignUp] = useState<boolean>(false);
   
       const open = () => {
-          setViewLogin(true);
+          setViewSignUp(true);
       }
   
       const close = () =>{
+          setViewSignUp(false);
+      }
+
+      // 맛나 로그인 창을 여는 상태
+      const [viewLogin,setViewLogin] = useState<boolean>(false);
+  
+      const openLogin = () => {
+          setViewLogin(true);
+          console.log(viewLogin)
+      }
+  
+      const closeLogin = () =>{
           setViewLogin(false);
       }
+
     return(
         <ModalBackground onClick={closeModal}>
             <Container>
-              {viewLogin && <SignUp onClose={close}/>}
+              {viewSignUp && <SignUp onClose={close}/>}
+              {viewLogin && <Login onClose={closeLogin} />}
                 <TitleContainer>
                     <BP>로그인하기</BP>
                     <SP>로그인 하면 탐색기록을</SP>
@@ -101,7 +116,7 @@ export default function LoginModal({onClose} : UserSimpleProps){
                 </TitleContainer>
 
                 <ButtonContainer>
-                  <SnsButton background={'#e54545'} text={'Matna 계정으로'} logo={matna}/>
+                  <SnsButton onClick={openLogin} background={'#e54545'} text={'Matna 계정으로'} logo={matna}/>
                     <SignUpContainer>
                       <button onClick={open} >회원가입 하기 </button>
 

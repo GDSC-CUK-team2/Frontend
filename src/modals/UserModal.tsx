@@ -1,6 +1,6 @@
 import React ,{useState} from "react";
 import heart_circle from "../assets/image/heart_circle.svg";
-import LoginModal from "./LoginModal";
+import LoginModal from "./login/LoginChoiceModal";
 import { styled , keyframes} from "styled-components";
 interface UserSimpleProps {
     onClose: () => void;

@@ -6,6 +6,7 @@ interface SnsButtonProps {
     background : string,
     text : string,
     logo : string,
+    onClick? : () => void,
 }
 
 const Container = styled.div<{background : string}>`
@@ -21,12 +22,7 @@ text-align : center;
 
 margin : 15px auto;
 
-
-img {
-
-    
-}
-
+cursor : pointer;
 span{
     font-size : 12px;
     padding : 17px 0px;
@@ -43,11 +39,11 @@ padding: 15px 10px;
 margin : 0px;
 `
 
-export default function SnsButton({background , text, logo} : SnsButtonProps){
+export default function SnsButton({background , text, logo, onClick} : SnsButtonProps){
 
 
     return(
-        <Container background={background}>
+        <Container background={background} onClick={onClick}>
                 <Logo src={logo} alt='x' />
                 <Line src={line} alt='x' /> 
                 <span>{text} 계속하기</span>
