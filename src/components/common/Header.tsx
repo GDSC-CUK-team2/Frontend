@@ -5,6 +5,7 @@ import logo from '../../assets/image/header_logo.svg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import UserModal from '../../modals/UserModal';
+import { getCookie } from '../../cookie/Cookie';
 
 const HeaderContainer = styled.div`
   width: 77vw;
@@ -61,7 +62,9 @@ export default function Header() {
   const close = () => {
     setView(false);
   };
-
+  
+  const cookie = getCookie("token");
+  console.log(cookie)
   return (
     <HeaderContainer>
       <LeftContainer>

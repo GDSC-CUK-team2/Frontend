@@ -156,7 +156,7 @@ export default function SignUpModal({onClose} : SignUpModalProps) {
         axios
             .post(`http://34.64.153.218:8080/api/auth/signup`, data, config)
             .then((response) => {
-                console.log(`Response : ${response}`);
+                console.log(JSON.stringify(data))
                 console.log(`Response : ${data}`);
                 alert('회원 가입 성공');
                 navigate('/');
