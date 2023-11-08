@@ -93,28 +93,27 @@ background : #f1f1f1;
 `
 
 const ButtonContainer = styled.div`
-margin: 100px auto;
-text-align : center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
 `
 
 const SubmitButton = styled.button`
 //기본 크기가 input > button
-width : 200px;
-height : 35px;
+width : 130px;
+height : 40px;
 
-font-size : 12px;
+font-size : 18px;
 
 margin : 10px;
-padding : 5px;
 
-color: #ffffff;
-border : 2px solid #e54545;
-border-radius : 5px;
-background-color : #e54545;
-
+color: #9c9c9c;
+border : 0px;
+border-radius : 4px;
+background-color : #f1f1f1;
 
 &:hover {
-
     cursor : pointer;
     }
 `
@@ -237,7 +236,7 @@ export default function SignUpModal({onClose} : SignUpModalProps) {
             <ButtonContainer>
 
                 <SubmitButton onClick={SignUp}>
-                    제출하기
+                    완료
                 </SubmitButton>
 
             </ButtonContainer>
