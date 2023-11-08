@@ -21,7 +21,7 @@ const ModalBackground = styled.div`
 
 const Container = styled.div`
     width: 700px;
-    height: 750px;
+    height: 500px;
 
     position: absolute;
     top: 50%;
@@ -89,28 +89,27 @@ background : #f1f1f1;
 `
 
 const ButtonContainer = styled.div`
-margin: 100px auto;
-text-align : center;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
 `
 
 const SubmitButton = styled.button`
 //기본 크기가 input > button
-width : 200px;
-height : 35px;
+width : 130px;
+height : 40px;
 
-font-size : 12px;
+font-size : 18px;
 
 margin : 10px;
-padding : 5px;
 
-color: #ffffff;
-border : 2px solid #e54545;
-border-radius : 5px;
-background-color : #e54545;
-
+color: #9c9c9c;
+border : 0px;
+border-radius : 4px;
+background-color : #f1f1f1;
 
 &:hover {
-
     cursor : pointer;
     }
 `
@@ -182,7 +181,7 @@ export default function Login({onClose} : LoginProps) {
         <Container>
                 <TitleContainer>
                     <BP>로그인</BP>
-                    <SP></SP>
+                    <SP>MATNA 계정을 정보를 입력해주세요</SP>
                     
                 </TitleContainer>
             {/* 아이디 */}
@@ -220,7 +219,7 @@ export default function Login({onClose} : LoginProps) {
             <ButtonContainer>
 
                 <SubmitButton onClick={Login}>
-                    제출하기
+                    확인
                 </SubmitButton>
 
             </ButtonContainer>
