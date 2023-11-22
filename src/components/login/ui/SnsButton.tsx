@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-import line from '../../assets/image/login/line.svg';
+import line from '../../../assets/image/login/line.svg';
 
 interface SnsButtonProps {
     background : string,

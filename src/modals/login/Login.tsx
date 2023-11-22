@@ -7,6 +7,7 @@ import { useNavigate } from "react-router";
 import { setCookie } from "../../cookie/Cookie";
 
 import SubmitButton from "../../components/button/SubmitButton";
+import useLogin from "../../components/login/hooks/useLogin";
 
 interface LoginProps {
     onClose: () => void;
@@ -99,6 +100,9 @@ const ButtonContainer = styled.div`
 
 
 export default function Login({onClose} : LoginProps) {
+
+    const {login} = useLogin();
+
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
         email: "",
@@ -115,51 +119,19 @@ export default function Login({onClose} : LoginProps) {
         });
     };
 
-    const Login = (e: React.MouseEvent) => {
-        e.preventDefault(); // Prevent the default form submission behavior.
-
-
-        // 공백 여부 검사
-        if (email.trim() === '' || password.trim() === '' ) {
-            alert({ html: '빈칸을 모두 채워주세요.' }); // 공백인 경우 알람 창을 띄}움.
-            return;
-        }
-
-        const data = {
-            email: email,
-            password: password,
-        };
-        const config = {};
-        axios
-            .post(`http://34.64.153.218:8080/api/auth/login`, data, config)
-            .then((response) => {
-                console.log(JSON.stringify(data))
-                console.log(JSON.stringify(response.data ));
-
-                setCookie("token", `JWT ${response.data.accessToken}`, {
-                    path: "/",
-                    sameSite: "strict",
-                });
-                
-                // window.location.replace("/")
-                
-            })
-            .catch((error) => {
-                console.log(error)
-                
-            });
-
-    };
-    const handleLogin = () =>{
-        alert('asd');
-    }
+    
+    const handleLogin = () => {
+        console.log('전송중...')
+        login({ email, password }); 
+    
+      };
 
     // 모달을 닫기 위한 상태
     const closeModal = (e: React.MouseEvent) => {
         const target = e.target as HTMLElement;
-        if (target === e.currentTarget) {
-            onClose(); // 배경 클릭 시 모달 닫기
-        }
+        // if (target === e.currentTarget) {
+        //     onClose(); // 배경 클릭 시 모달 닫기
+        // }
     };
 
     return (
@@ -193,8 +165,6 @@ export default function Login({onClose} : LoginProps) {
 
             <InputContainer >
                 <Name>비밀번호 </Name> 
-
-
                     <Input 
                         placeholder='비밀번호를 입력해주세요'
                         name="password"

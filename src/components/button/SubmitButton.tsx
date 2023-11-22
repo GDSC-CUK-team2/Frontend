@@ -25,9 +25,9 @@ background-color : #f1f1f1;
     cursor : pointer;
     }
 `
-export default function SubmitButton({onClick} : ButtonProps){
+export default function SubmitButton({onClick, children} : ButtonProps){
     return(
-        <Button>
+        <Button onClick={onClick} type='button'>
             완료
         </Button>
     )
