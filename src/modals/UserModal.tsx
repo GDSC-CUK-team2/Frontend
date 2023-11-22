@@ -32,7 +32,7 @@ const Container = styled.div`
   
   position: absolute;
   top: 7%;
-  right: 11%;
+  right: 0%;
 
   background-color: #FCFCFC;
 

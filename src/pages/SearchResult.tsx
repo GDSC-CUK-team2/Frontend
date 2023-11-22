@@ -12,6 +12,7 @@ const Container = styled.div`
   display  :flex ;
   flex-direction: row;
   padding-top: 89px;
+  
 `;
 
 const SearchResults = styled.div`

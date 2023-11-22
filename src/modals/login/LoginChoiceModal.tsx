@@ -6,7 +6,7 @@ import matna from '../../assets/image/login/matna.svg';
 import facebook from '../../assets/image/login/facebook.svg';
 import kakao from '../../assets/image/login/kakao.svg';
 import apple from '../../assets/image/login/apple.svg';
-import SignUp from "../SignUpModal";
+import SignUp from "../signup/SignUp";
 import Login from './Login'
 
 interface UserSimpleProps {

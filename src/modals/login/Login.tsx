@@ -6,6 +6,8 @@ import axios from "axios";
 import { useNavigate } from "react-router";
 import { setCookie } from "../../cookie/Cookie";
 
+import SubmitButton from "../../components/button/SubmitButton";
+
 interface LoginProps {
     onClose: () => void;
   }
@@ -95,24 +97,6 @@ const ButtonContainer = styled.div`
   padding: 20px;
 `
 
-const SubmitButton = styled.button`
-//기본 크기가 input > button
-width : 130px;
-height : 40px;
-
-font-size : 18px;
-
-margin : 10px;
-
-color: #9c9c9c;
-border : 0px;
-border-radius : 4px;
-background-color : #f1f1f1;
-
-&:hover {
-    cursor : pointer;
-    }
-`
 
 export default function Login({onClose} : LoginProps) {
     const navigate = useNavigate();
@@ -166,6 +150,9 @@ export default function Login({onClose} : LoginProps) {
             });
 
     };
+    const handleLogin = () =>{
+        alert('asd');
+    }
 
     // 모달을 닫기 위한 상태
     const closeModal = (e: React.MouseEvent) => {
@@ -195,6 +182,7 @@ export default function Login({onClose} : LoginProps) {
                         placeholder='이메일를 입력해주세요'
                         name="email"
                         value={email}
+                        
                         onChange={onInputChange} />
 
             </InputContainer>
@@ -211,6 +199,7 @@ export default function Login({onClose} : LoginProps) {
                         placeholder='비밀번호를 입력해주세요'
                         name="password"
                         value={password}
+                        type='password'
                         onChange={onInputChange} />
 
             </InputContainer>
@@ -218,7 +207,7 @@ export default function Login({onClose} : LoginProps) {
            
             <ButtonContainer>
 
-                <SubmitButton onClick={Login}>
+                <SubmitButton onClick={handleLogin}>
                     확인
                 </SubmitButton>
 
