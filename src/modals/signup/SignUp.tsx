@@ -6,6 +6,7 @@ import SubmitButton from "../../components/button/SubmitButton";
 import { styled, css } from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router";
+import useSignUp from "../../components/signup/hooks/useSignUp";
 
 interface SignUpModalProps {
     onClose: () => void;
@@ -102,6 +103,9 @@ const ButtonContainer = styled.div`
 
 export default function SignUpModal({onClose} : SignUpModalProps) {
     const navigate = useNavigate();
+    
+    const {signUp} = useSignUp();
+
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -117,40 +121,10 @@ export default function SignUpModal({onClose} : SignUpModalProps) {
             [name]: value,
         });
     };
-
-    const SignUp = (e: React.MouseEvent) => {
-        e.preventDefault(); // Prevent the default form submission behavior.
-
-
-        // 공백 여부 검사
-        if (email.trim() === '' || password.trim() === '' || nickname.trim() === '') {
-            alert({ html: '빈칸을 모두 채워주세요.' }); // 공백인 경우 알람 창을 띄}움.
-            return;
-        }
-
-        const data = {
-            email: email,
-            password: password,
-            nickname: nickname,
-        };
-        const config = {};
-        axios
-            .post(`http://34.64.153.218:8080/api/auth/signup`, data, config)
-            .then((response) => {
-                console.log(JSON.stringify(data))
-                console.log(`Response : ${data}`);
-                alert('회원 가입 성공');
-                navigate('/');
-            })
-            .catch((error) => {
-                console.log(error)
-                console.log(data)
-                
-            });
-
-    };
+    
     const handleSignUp = () =>{
-        console.log('a')
+        signUp({ email, password,nickname }); 
+
     }
     // 모달을 닫기 위한 상태
     const closeModal = (e: React.MouseEvent) => {
