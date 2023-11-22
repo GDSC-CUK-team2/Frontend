@@ -1,6 +1,6 @@
 import React ,{useState} from "react";
 import { styled } from "styled-components";
-import SnsButton from "../../components/login/SnsButton";
+import SnsButton from "../../components/login/ui/SnsButton";
 
 import matna from '../../assets/image/login/matna.svg';
 import facebook from '../../assets/image/login/facebook.svg';
