@@ -169,6 +169,7 @@ export default function SignUpModal({onClose} : SignUpModalProps) {
                     <Input 
                         placeholder='비밀번호를 입력해주세요'
                         name="password"
+                        type="password"
                         value={password}
                         onChange={onInputChange} />
 

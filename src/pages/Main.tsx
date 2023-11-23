@@ -84,6 +84,7 @@ const CategoryContainer = styled.div`
 
 
 export default function Main() {
+  
   return (
     <>
       <Container>

@@ -19,7 +19,7 @@ export default function useSignUp(){
             return;
           }
     
-        const response = await axios.post(`http://34.64.153.218:8080/api/auth/signup`, data);
+        const response = await axios.post(`http://35.216.19.44:8080/api/auth/signup`, data);
         console.log(JSON.stringify(data))
         console.log(`Response : ${data}`);
         alert('회원 가입 성공');

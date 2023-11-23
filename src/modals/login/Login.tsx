@@ -121,7 +121,6 @@ export default function Login({onClose} : LoginProps) {
 
     
     const handleLogin = () => {
-        console.log('전송중...')
         login({ email, password }); 
     
       };

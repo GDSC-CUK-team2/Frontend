@@ -14,16 +14,16 @@ export default function useLogin(){
     const login = async (data: LoginData) => {
         try {
           if (data.email.trim() === '' || data.password.trim() === '' ) {
-            alert('빈칸을 채워주세요 !'); 
+            alert('빈칸을 채워주세요 !');
             return;
           }
     
-        const response = await axios.post(`http://34.64.153.218:8080/api/auth/login`, data);
+        const response = await axios.post(`http://35.216.19.44:8080/api/auth/login`, data);
         navigate('/');
         console.log(JSON.stringify(data))
         console.log(JSON.stringify(response.data ));
 
-        setCookie("token", `JWT ${response.data.accessToken}`, {
+        setCookie("token", `${response.data.accessToken}`, {
             path: "/",
             sameSite: "strict",
         });
