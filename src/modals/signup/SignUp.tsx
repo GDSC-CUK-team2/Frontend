@@ -7,6 +7,7 @@ import { styled, css } from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router";
 import useSignUp from "../../components/signup/hooks/useSignUp";
+import CloseModalButton from "../../components/button/CloseModalButton";
 
 interface SignUpModalProps {
     onClose: () => void;
@@ -124,6 +125,7 @@ export default function SignUpModal({onClose} : SignUpModalProps) {
     
     const handleSignUp = () =>{
         signUp({ email, password,nickname }); 
+        window.location.replace("/")
 
     }
     // 모달을 닫기 위한 상태
@@ -138,6 +140,8 @@ export default function SignUpModal({onClose} : SignUpModalProps) {
 
     <ModalBackground>
         <Container>
+            <CloseModalButton onClick={onClose} />
+
                 <TitleContainer>
                     <BP>회원가입</BP>
                     <SP>새로운 계정 정보를 입력해주세요</SP>
@@ -195,7 +199,7 @@ export default function SignUpModal({onClose} : SignUpModalProps) {
             <ButtonContainer>
 
                 <SubmitButton onClick={handleSignUp}>
-
+                    
                 </SubmitButton>
 
             </ButtonContainer>

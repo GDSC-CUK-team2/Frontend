@@ -52,6 +52,8 @@ const UserIcon = styled.div`
 
 export default function Header() {
 
+  let token = getCookie('token');
+  console.log(token);
   // 유저아이콘 클릭
   const [view,setView] = useState<boolean>(false);
 
@@ -63,8 +65,7 @@ export default function Header() {
     setView(false);
   };
   
-  const cookie = getCookie("token");
-  console.log(cookie)
+
   return (
     <HeaderContainer>
       <LeftContainer>
@@ -72,8 +73,9 @@ export default function Header() {
         <Title>MATNA</Title>
       </LeftContainer>
       <RightContainer>
+        {token ? 
         <MyPage>마이페이지</MyPage>
-
+        : <></>}
         {/* 유저 아이콘 클릭시 */}
         {view && 
         <UserModal onClose={close}/>

@@ -8,6 +8,7 @@ import { setCookie } from "../../cookie/Cookie";
 
 import SubmitButton from "../../components/button/SubmitButton";
 import useLogin from "../../components/login/hooks/useLogin";
+import CloseModalButton from "../../components/button/CloseModalButton";
 
 interface LoginProps {
     onClose: () => void;
@@ -102,8 +103,8 @@ const ButtonContainer = styled.div`
 export default function Login({onClose} : LoginProps) {
 
     const {login} = useLogin();
-
-    const navigate = useNavigate();
+    console.log(login);
+    
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -120,28 +121,30 @@ export default function Login({onClose} : LoginProps) {
     };
 
     
-    const handleLogin = () => {
-        login({ email, password }); 
+    const handleLogin = async () => {
+        const loginResult = await login({ email, password });
     
+        if (loginResult.status === 200) {
+          // 로그인 성공 시 모달 닫기
+          window.location.replace("/")
+
+          
+        }
+        // 로그인 상태에 따른 처리를 더 추가할 수 있습니다.
       };
 
-    // 모달을 닫기 위한 상태
-    const closeModal = (e: React.MouseEvent) => {
-        const target = e.target as HTMLElement;
-        // if (target === e.currentTarget) {
-        //     onClose(); // 배경 클릭 시 모달 닫기
-        // }
-    };
+
 
     return (
 
     <ModalBackground>
         <Container>
-                <TitleContainer>
-                    <BP>로그인</BP>
-                    <SP>MATNA 계정을 정보를 입력해주세요</SP>
-                    
-                </TitleContainer>
+            <CloseModalButton onClick={onClose} />
+            <TitleContainer>
+                <BP>로그인</BP>
+                <SP>MATNA 계정을 정보를 입력해주세요</SP>
+                
+            </TitleContainer>
             {/* 아이디 */}
             <Form>
 
@@ -173,11 +176,9 @@ export default function Login({onClose} : LoginProps) {
 
             </InputContainer>
             </Form>
-           
             <ButtonContainer>
 
                 <SubmitButton onClick={handleLogin}>
-                    확인
                 </SubmitButton>
 
             </ButtonContainer>

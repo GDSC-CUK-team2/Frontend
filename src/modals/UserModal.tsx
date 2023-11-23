@@ -1,6 +1,6 @@
 import React ,{useState} from "react";
 import heart_circle from "../assets/image/heart_circle.svg";
-import LoginModal from "./login/LoginChoiceModal";
+import LoginChoiceModal from "./login/LoginChoiceModal";
 import { styled , keyframes} from "styled-components";
 interface UserSimpleProps {
     onClose: () => void;
@@ -138,6 +138,7 @@ export default function UserModal({onClose} : UserSimpleProps){
 
     const open = () => {
         setViewLogin(true);
+
     }
 
     const close = () =>{
@@ -161,11 +162,12 @@ export default function UserModal({onClose} : UserSimpleProps){
                 </Top>
                 
                 {/* 로그인 모달창 */}
-                {viewLogin && <LoginModal onClose={close} />}
+                {viewLogin && <LoginChoiceModal onClose={close} />}
                 <LoginButton onClick={open}>로그인 하기</LoginButton>
 
             </Container>
         </ModalBackground>
+
     )
 }
 

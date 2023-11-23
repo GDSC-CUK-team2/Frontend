@@ -1,9 +1,8 @@
 import React, { ReactNode } from 'react';
 import { styled } from "styled-components";
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: () => void;
-  children: ReactNode; 
 
 }
 
@@ -25,9 +24,9 @@ background-color : #f1f1f1;
     cursor : pointer;
     }
 `
-export default function SubmitButton({onClick, children} : ButtonProps){
+export default function SubmitButton({onClick} : ButtonProps){
     return(
-        <Button onClick={onClick} type='button'>
+        <Button onClick={onClick} >
             완료
         </Button>
     )

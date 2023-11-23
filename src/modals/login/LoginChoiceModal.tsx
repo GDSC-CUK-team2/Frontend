@@ -8,6 +8,7 @@ import kakao from '../../assets/image/login/kakao.svg';
 import apple from '../../assets/image/login/apple.svg';
 import SignUp from "../signup/SignUp";
 import Login from './Login'
+import CloseModalButton from "../../components/button/CloseModalButton";
 
 interface UserSimpleProps {
     onClose: () => void;
@@ -70,21 +71,14 @@ button{
   font-size : 12px;
 `
 
-export default function LoginModal({onClose} : UserSimpleProps){
 
-    // 모달을 닫기 위한 상태
-    const closeModal = (e: React.MouseEvent) => {
-        const target = e.target as HTMLElement;
-        if (target === e.currentTarget) {
-          onClose(); // 배경 클릭 시 모달 닫기
-        }
-    };
+export default function LoginChoiceModal({onClose} : UserSimpleProps){
 
-  
       // 회원가입 창을 여는 상태
       const [viewSignUp,setViewSignUp] = useState<boolean>(false);
   
       const open = () => {
+
           setViewSignUp(true);
       }
   
@@ -104,9 +98,12 @@ export default function LoginModal({onClose} : UserSimpleProps){
           setViewLogin(false);
       }
 
+
     return(
-        <ModalBackground onClick={closeModal}>
+        <ModalBackground >
+          
             <Container>
+              <CloseModalButton onClick={onClose} />
               {viewSignUp && <SignUp onClose={close}/>}
               {viewLogin && <Login onClose={closeLogin} />}
                 <TitleContainer>
@@ -126,6 +123,7 @@ export default function LoginModal({onClose} : UserSimpleProps){
                     <SnsButton background={'#000000'} text={'Apple 로'} logo={apple} />
 
                 </ButtonContainer>
+
 
                 
             </Container>

@@ -7,37 +7,42 @@ interface LoginData {
     email: string;
     password: string;
   }
+
+interface LoginResult {
+    status: number;
+  }
+  
 export default function useLogin(){
     
     const navigate = useNavigate();
 
-    const login = async (data: LoginData) => {
+    const login = async (data: LoginData) : Promise<LoginResult> => {
         try {
           if (data.email.trim() === '' || data.password.trim() === '' ) {
             alert('빈칸을 채워주세요 !');
-            return;
+            return {status : 9999};
           }
     
         const response = await axios.post(`http://35.216.19.44:8080/api/auth/login`, data);
-        navigate('/');
-        console.log(JSON.stringify(data))
-        console.log(JSON.stringify(response.data ));
-
+        console.log((response.data ));
+        console.log(response.status)
         setCookie("token", `${response.data.accessToken}`, {
             path: "/",
             sameSite: "strict",
         });
-
+        return {status : response.status};
         } 
         catch (error) {
         console.log(data);
         console.log('Error:', error);
+        return { status: 500 };
+
           
         }
       };
 
     
-   return {login} ;
+   return {login } ;
    
 
 };

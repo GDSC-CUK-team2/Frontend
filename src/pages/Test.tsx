@@ -20,17 +20,18 @@ export default function Test(){
 
     useEffect(() => {
         axios
-            .get(`http://35.216.19.44:8080/api/users/me`, 
+            .get(`http://35.216.19.44:8080/api/restaurants`, 
                  {
-                headers : {
-                    'Authorization' : `Baerer ${token}`
-                },
+                // headers : {
+                //     'Authorization' : `Baerer ${token}`
+                // },
                 // params : {
                 //     userId : userId
                 // }
             }
             )
             .then((response) => {
+                console.log(response);
                 setData(response.data.content);
             })
             .catch((error) => {
@@ -42,6 +43,7 @@ export default function Test(){
 
     return(
         <>
+            테스트 페이지
         </>
     )
 }
