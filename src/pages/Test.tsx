@@ -20,11 +20,11 @@ export default function Test(){
 
     useEffect(() => {
         axios
-            .get(`http://35.216.19.44:8080/api/restaurants`, 
+            .get(`http://35.216.19.44:8080/api/users/me`, 
                  {
-                // headers : {
-                //     'Authorization' : `Baerer ${token}`
-                // },
+                headers : {
+                    'Authorization' : `Baerer ${token}`
+                },
                 // params : {
                 //     userId : userId
                 // }

@@ -8,7 +8,7 @@ interface SignUpData {
     password : string;
     nickname : string;
   }
-export default function useSignUp(){
+export default function SignUp(){
     
     const navigate = useNavigate();
 
@@ -33,8 +33,6 @@ export default function useSignUp(){
           
         }
       };
-
-    
    return {signUp} ;
    
 

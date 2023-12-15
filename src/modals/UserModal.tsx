@@ -2,6 +2,8 @@ import React ,{useState} from "react";
 import heart_circle from "../assets/image/heart_circle.svg";
 import LoginChoiceModal from "./login/LoginChoiceModal";
 import { styled , keyframes} from "styled-components";
+import SRestItem from "../components/list/SRestItem";
+
 interface UserSimpleProps {
     onClose: () => void;
   }
@@ -105,21 +107,35 @@ cursor : pointer;
 
 
 `
+const Restaurant = styled.div`
+  position: absolute;
+  top: 10%;
+
+  width : 100%;
+  height : 550px;
+
+  background : #FCFCFC;
+
+`
+
+const LoginContainer = styled.div`
+  position: absolute;
+  top: 90%;
+  left : 4%;
+
+`
 
 const LoginButton = styled.button`
-  
 
   width : 371px;
   height : 60px;
 
-  border : 0px;
+  border : 2.4px #e54444 solid;
   border-radius : 40px;
 
-  color : #fff;
-  background : #e55444;
+  color : #e55444;
 
-  margin: 720px auto; /* LoginButton을 하단으로 내립니다. */
-
+  background : #fff;
 
 `
 
@@ -146,7 +162,9 @@ export default function UserModal({onClose} : UserSimpleProps){
     }
     
     return(
+      
         <ModalBackground onClick={closeModal}>
+
             <Container>
                 <Top>
                   <BBox>
@@ -161,9 +179,14 @@ export default function UserModal({onClose} : UserSimpleProps){
                   </SBox>
                 </Top>
                 
+                <Restaurant>
+                  <SRestItem />
+                </Restaurant>
                 {/* 로그인 모달창 */}
-                {viewLogin && <LoginChoiceModal onClose={close} />}
+                <LoginContainer>
                 <LoginButton onClick={open}>로그인 하기</LoginButton>
+                </LoginContainer>
+                {viewLogin && <LoginChoiceModal onClose={close} />}
 
             </Container>
         </ModalBackground>

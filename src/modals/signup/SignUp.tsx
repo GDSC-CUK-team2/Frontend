@@ -6,7 +6,7 @@ import SubmitButton from "../../components/button/SubmitButton";
 import { styled, css } from "styled-components";
 import axios from "axios";
 import { useNavigate } from "react-router";
-import useSignUp from "../../components/signup/hooks/useSignUp";
+import getSignUp from "../../components/signup/model/SignUp";
 import CloseModalButton from "../../components/button/CloseModalButton";
 
 interface SignUpModalProps {
@@ -105,7 +105,7 @@ const ButtonContainer = styled.div`
 export default function SignUpModal({onClose} : SignUpModalProps) {
     const navigate = useNavigate();
     
-    const {signUp} = useSignUp();
+    const {signUp} = getSignUp();
 
     const [formData, setFormData] = useState({
         email: "",
