@@ -197,7 +197,7 @@ export default function SignUpModal({onClose} : SignUpModalProps) {
 
             <ButtonContainer>
 
-                <SubmitButton onClick={handleSignUp}>
+                <SubmitButton onClick={handleSignUp} background="#f1f1f1">
                     
                 </SubmitButton>
 

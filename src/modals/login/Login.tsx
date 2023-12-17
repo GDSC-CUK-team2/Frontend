@@ -175,7 +175,7 @@ export default function Login({onClose} : LoginProps) {
             </Form>
             <ButtonContainer>
 
-                <SubmitButton onClick={handleLogin}>
+                <SubmitButton onClick={handleLogin} background="#f1f1f1">
                 </SubmitButton>
 
             </ButtonContainer>

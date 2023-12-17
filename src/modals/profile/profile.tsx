@@ -2,6 +2,8 @@ import React ,{useState} from "react";
 import { styled } from "styled-components";
 import user from "../../assets/image/header_user.svg"
 import edit from "../../assets/image/edit_icon.svg";
+import SubmitButton from "../../components/button/SubmitButton";
+import CloseModalButton from "../../components/button/CloseModalButton";
 interface ProfileProps {
     onClose: () => void;
   }
@@ -18,7 +20,9 @@ const ModalBackground = styled.div`
 const Container = styled.div`
   width: 1000px;
   height: 80vh;
-
+  @media (max-height: 1200px) {
+    height: 500px;
+  }
   position: absolute;
   top: 50%;
   left: 50%;
@@ -35,8 +39,22 @@ const Container = styled.div`
   justify-content : start;
 
 `
-const Image = styled.div`
 
+const Nav = styled.div`
+
+color: #9c9c9c;
+display: flex;
+`
+const Left = styled.div`
+position : absolute;
+left : 20px;
+top : 20px;
+`
+const Right = styled.div`
+
+`
+const Image = styled.div`
+margin-top: 40px;
 img {
   width : 160px;
   height : 160px;
@@ -45,18 +63,18 @@ img {
 }
 `
 const EmailContainer = styled.div`
-margin-bottom : 20px;
-span{
-  margin-right : 34px;
-}
+
+margin-bottom : 2vh;
+
 `
 const PasswordContainer = styled.div`
-margin-bottom : 20px;
-span{
-  margin-right : 20px;
-}
+margin-bottom : 2vh;
+
 `
 const SnsContainer = styled.div`
+display: flex;
+justify-content: center;
+
 
 `
 
@@ -66,7 +84,7 @@ width : 80px;
 
 text-align : right;
 
-margin-right : 0px;
+
 
 `
 
@@ -76,11 +94,50 @@ const Input = styled.input`
   background : #f1f1f1;
 
   border : 0px;
+
+  margin-left: 20px;
 `
+
+const ButtonContainer = styled.div`
+display: flex;
+justify-content: flex-end;
+`
+
+const Back = styled.button`
+width : 75px;
+height : 40px;
+
+
+font-size : 18px;
+
+margin : 10px;
+
+color: #9c9c9c;
+border : 0px;
+border-radius : 4px;
+background-color: #f1f1f1;
+
+&:hover {
+    cursor : pointer;
+}
+`
+
 export default function Profile({onClose} : ProfileProps){
+
+    
     return(
         <ModalBackground>
+            
             <Container>
+              <Nav>
+                <Left>마이 페이지 {`>`} 프로필 관리
+
+                </Left>
+                <Right>   
+                <CloseModalButton onClick={onClose} />
+   
+                </Right>
+              </Nav>
                 <Image>
                   <img src={user} alt='x' />
                   <p>닉네임  </p>
@@ -88,12 +145,16 @@ export default function Profile({onClose} : ProfileProps){
                 </Image>
 
                 <EmailContainer>
-                  <span>이메일</span>
+                   <Box>
+                    <span>이메일</span>
+                  </Box>                 
                   <Input />
                 </EmailContainer>
 
                 <PasswordContainer>
-                  <span>비밀번호</span>
+                  <Box>
+                      <span>비밀번호</span>
+                  </Box>     
                   <Input />
 
                 </PasswordContainer>
@@ -106,7 +167,14 @@ export default function Profile({onClose} : ProfileProps){
                   
                   <Input />
                 </SnsContainer>
-                
+                <ButtonContainer>
+                  <Back onClick={onClose}>
+                    취소
+                  </Back>
+                  <SubmitButton onClick={onClose} background="#E54444">
+                    확인
+                  </SubmitButton>
+                </ButtonContainer>
             </Container>
         </ModalBackground>
     )
