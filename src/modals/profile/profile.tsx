@@ -17,7 +17,7 @@ const ModalBackground = styled.div`
 
 const Container = styled.div`
   width: 1000px;
-  height: 800px;
+  height: 80vh;
 
   position: absolute;
   top: 50%;

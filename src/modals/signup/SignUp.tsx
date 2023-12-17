@@ -24,7 +24,7 @@ const ModalBackground = styled.div`
 
 const Container = styled.div`
     width: 700px;
-    height: 750px;
+    height: 80vh;
 
     position: absolute;
     top: 50%;

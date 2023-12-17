@@ -28,28 +28,28 @@ const ModalBackground = styled.div`
 `;
 
 const Container = styled.div`
-  width: 400px;
-  height: 800px;
+  width: 25vw;
+  height: 93vh;
 
   border-radius : 40px 0px 0px 40px;
   
   position: absolute;
-  top: 7%;
+  top: 6vh;
   right: 0%;
 
   background-color: #FCFCFC;
 
-  animation: ${slideIn} 0.5s ease-in-out; // 슬라이딩 애니메이션 적용
+  animation: ${slideIn} 0.5s ease-in-out; 
 
 `
 
 const Top = styled.div`
   position: absolute;
-  top: 1%;
-  right: 0%;
+  top: 3%;
+  right: -1%;
 
-  width : 386px;
-  height : 57px;
+  width : 25vw;
+  height : 6vh;
 
   border-radius : 40px 0px 0px 40px;
 
@@ -62,8 +62,8 @@ const Top = styled.div`
 `
 
 const BBox = styled.button`
-width : 140px;
-height : 40px;
+width : 10vw;
+height : 6vh;
 
 font-size : 16px;
 
@@ -84,8 +84,8 @@ cursor : pointer;
 `
 
 const SBox = styled.button`
-width : 70px;
-height : 40px;
+width : 5vw;
+height : 6vh;
 
 padding : 10px 0px;
 
@@ -110,10 +110,10 @@ cursor : pointer;
 `
 const Restaurant = styled.div`
   position: absolute;
-  top: 10%;
+  top: 12vh;
 
   width : 100%;
-  height : 600px;
+  height : 65vh;
 
   background : #FCFCFC;
 
@@ -122,7 +122,7 @@ const Restaurant = styled.div`
 
 const ProfileContainer = styled.div`
   position: absolute;
-  top: 87%;
+  top: 80vh;
   right : 1%;
 `
 const ProfileButton = styled.div`
@@ -131,7 +131,7 @@ color : #4C4C4C;
 
 const LoginContainer = styled.div`
   position: absolute;
-  top: 90%;
+  top: 83vh;
   left : 4%;
 
 `
