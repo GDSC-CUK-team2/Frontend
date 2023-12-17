@@ -132,8 +132,6 @@ export default function Login({onClose} : LoginProps) {
         // 로그인 상태에 따른 처리를 더 추가할 수 있습니다.
       };
 
-
-
     return (
 
     <ModalBackground>

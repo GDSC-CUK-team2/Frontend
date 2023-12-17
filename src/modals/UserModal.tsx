@@ -3,6 +3,7 @@ import heart_circle from "../assets/image/heart_circle.svg";
 import LoginChoiceModal from "./login/LoginChoiceModal";
 import { styled , keyframes} from "styled-components";
 import SRestItem from "../components/list/SRestItem";
+import Profile from "./profile/Profile";
 
 interface UserSimpleProps {
     onClose: () => void;
@@ -112,10 +113,20 @@ const Restaurant = styled.div`
   top: 10%;
 
   width : 100%;
-  height : 550px;
+  height : 600px;
 
   background : #FCFCFC;
 
+  border-bottom : 1px solid #e2e2e2;
+`
+
+const ProfileContainer = styled.div`
+  position: absolute;
+  top: 87%;
+  right : 1%;
+`
+const ProfileButton = styled.div`
+color : #4C4C4C;
 `
 
 const LoginContainer = styled.div`
@@ -139,6 +150,7 @@ const LoginButton = styled.button`
 
 `
 
+
 export default function UserModal({onClose} : UserSimpleProps){
 
     // 모달을 닫기 위한 상태
@@ -161,6 +173,17 @@ export default function UserModal({onClose} : UserSimpleProps){
         setViewLogin(false);
     }
     
+        // 프로필 창을 여는 상태
+        const [viewProfile,setViewProfile] = useState<boolean>(false);
+    
+        const openProfile = () => {
+            setViewProfile(true);
+    
+        }
+    
+        const closeProfile = () =>{
+            setViewProfile(false);
+        }
     return(
       
         <ModalBackground onClick={closeModal}>
@@ -182,11 +205,18 @@ export default function UserModal({onClose} : UserSimpleProps){
                 <Restaurant>
                   <SRestItem />
                 </Restaurant>
+
+                <ProfileContainer>
+                  <ProfileButton onClick={openProfile}>
+                    내 프로필 관리 {`>`}
+                  </ProfileButton>
+                </ProfileContainer>
                 {/* 로그인 모달창 */}
                 <LoginContainer>
                 <LoginButton onClick={open}>로그인 하기</LoginButton>
                 </LoginContainer>
                 {viewLogin && <LoginChoiceModal onClose={close} />}
+                {viewProfile && <Profile onClose={closeProfile} /> }
 
             </Container>
         </ModalBackground>

@@ -125,7 +125,6 @@ export default function SignUpModal({onClose} : SignUpModalProps) {
     
     const handleSignUp = () =>{
         signUp({ email, password,nickname }); 
-        window.location.replace("/")
 
     }
     // 모달을 닫기 위한 상태
