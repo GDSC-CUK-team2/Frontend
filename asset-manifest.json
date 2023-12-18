@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/matna/static/js/main.84a62013.js",
+    "main.js": "/matna/static/js/main.edfdfe15.js",
     "static/js/787.540a525e.chunk.js": "/matna/static/js/787.540a525e.chunk.js",
     "static/media/matna_background.svg": "/matna/static/media/matna_background.d565cbf25139b2cf0ac9ce079de9a94c.svg",
     "static/media/map.svg": "/matna/static/media/map.2e1cec2f288fc0963a2791a71001c347.svg",
@@ -14,10 +14,10 @@
     "static/media/hot.svg": "/matna/static/media/hot.5165878828d4332758e25939c3a36d8a.svg",
     "static/media/edit_icon.svg": "/matna/static/media/edit_icon.163e8b3aeb33585dc78f334676ec07bb.svg",
     "static/media/heart_circle.svg": "/matna/static/media/heart_circle.cd4f52beeda2177f31acdd86afd87ed2.svg",
+    "index.html": "/matna/index.html",
     "static/media/view.svg": "/matna/static/media/view.9150c8b68e769dcb9c5160de8408b6e9.svg",
     "static/media/heart.svg": "/matna/static/media/heart.03b7df0e280270b14866a3cd5ad4c791.svg",
     "static/media/header_user.svg": "/matna/static/media/header_user.fb48e7c73aa5ca336175982f0660554b.svg",
-    "index.html": "/matna/index.html",
     "static/media/curtley.svg": "/matna/static/media/curtley.7987be91d42c6593050d20c7b13afbf1.svg",
     "static/media/cutlery.svg": "/matna/static/media/cutlery.ddd0d502d22452009ec4b5513dbae25d.svg",
     "static/media/search_icon.svg": "/matna/static/media/search_icon.1222a3342413e6a3a6ce836859126700.svg",
@@ -29,10 +29,10 @@
     "static/media/none_card.svg": "/matna/static/media/none_card.e0b34dc01a98f3fae9f68de201165948.svg",
     "static/media/line.svg": "/matna/static/media/line.1be45737d91b6b843dc5283ee44e154f.svg",
     "static/media/red_line.svg": "/matna/static/media/red_line.3c0b62f89b5b1692aaa35c0d967883a4.svg",
-    "main.84a62013.js.map": "/matna/static/js/main.84a62013.js.map",
+    "main.edfdfe15.js.map": "/matna/static/js/main.edfdfe15.js.map",
     "787.540a525e.chunk.js.map": "/matna/static/js/787.540a525e.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.84a62013.js"
+    "static/js/main.edfdfe15.js"
   ]
 }
