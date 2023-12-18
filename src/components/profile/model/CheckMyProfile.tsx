@@ -37,10 +37,10 @@ export default function CheckMyProfile(){
             .then((response) => {
                 console.log(response.data.userId);
                 setMyData(response.data);
-                console.log(response.data)
-                const {userData } = getProfile(response.data.userId)
-                console.log(userData)
-                setData(userData);
+                // console.log(response.data)
+                // const {userData } = getProfile(response.data.userId)
+                // console.log(userData)
+                // setData(userData);
             })
             .catch((error) => {
                 console.log('에러:', error);
