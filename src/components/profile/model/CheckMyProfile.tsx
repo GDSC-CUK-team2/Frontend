@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getCookie, setCookie } from "../../../cookie/Cookie";
+import getProfile from "./CheckProfile";
 
 interface User {
     userId: number;
@@ -10,16 +11,20 @@ interface User {
     role: string[];
   }
 
+interface userData{
+    nickname : string;
+    profileUrl : string;
+}
+
 export default function CheckMyProfile(){
     
-    const[userData,setUserData] = useState<User>();
-    
+    const [myData,setMyData] = useState<User>();
+    const [data,setData] = useState<userData>();
     const navigate = useNavigate();
 
     let token = getCookie('token');
 
-    console.log(getCookie('token'));
-    
+
     useEffect(() => {
         axios
             .get(`http://35.216.62.134:8080/api/user/me`, 
@@ -31,7 +36,11 @@ export default function CheckMyProfile(){
             )
             .then((response) => {
                 console.log(response.data.userId);
-                setUserData(response.data);
+                setMyData(response.data);
+                console.log(response.data)
+                const {userData } = getProfile(response.data.userId)
+                console.log(userData)
+                setData(userData);
             })
             .catch((error) => {
                 console.log('에러:', error);
@@ -40,7 +49,7 @@ export default function CheckMyProfile(){
     }, []);
 
     
-   return {CheckMyProfile, userData } ;
+   return {CheckMyProfile, myData ,data} ;
    
 
 };

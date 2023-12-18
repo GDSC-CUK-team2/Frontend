@@ -1,0 +1,12 @@
+// setupProxy.js
+const { createProxyMiddleware } = require('http-proxy-middleware');
+
+module.exports = function (app) {
+  app.use(
+    '/api', // Replace with the base URL of your API
+    createProxyMiddleware({
+      target: 'http://actual-api-server.com', // Replace with the actual API server URL
+      changeOrigin: true,
+    })
+  );
+};

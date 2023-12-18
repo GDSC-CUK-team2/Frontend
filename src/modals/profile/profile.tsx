@@ -1,7 +1,9 @@
 import React ,{useState} from "react";
 import { styled } from "styled-components";
 import user from "../../assets/image/header_user.svg"
-import getProfile from "../../components/profile/model/CheckMyProfile";
+import getMyProfile from "../../components/profile/model/CheckMyProfile";
+import getProfile from "../../components/profile/model/CheckProfile";
+
 import edit from "../../assets/image/edit_icon.svg";
 import SubmitButton from "../../components/button/SubmitButton";
 import CloseModalButton from "../../components/button/CloseModalButton";
@@ -143,10 +145,10 @@ background-color: #f1f1f1;
 
 export default function Profile({onClose} : ProfileProps){
 
-    const {CheckMyProfile, userData} = getProfile();
-    console.log(CheckMyProfile);
-    console.log(userData);
+    const {myData,data} = getMyProfile();
 
+    console.log(myData);
+    console.log(data)
 
     return(
         <ModalBackground>
@@ -163,7 +165,7 @@ export default function Profile({onClose} : ProfileProps){
               </Nav>
                 <Image>
                   <img className="profile" src='https://storage.cloud.google.com/matna-bucket/default-profile.jpg' alt='x' />
-                  <p>{userData?.nickname} <Edit width='20px' height='20px' src={edit} alt='x' /> </p>
+                  <p>{myData?.nickname} <Edit width='20px' height='20px' src={edit} alt='x' /> </p>
 
                 </Image>
 
@@ -177,7 +179,7 @@ export default function Profile({onClose} : ProfileProps){
                     <span>이메일</span>
                   </Box>                 
                   <Input 
-                    value={userData?.email}/>
+                    value={myData?.email}/>
                 </EmailContainer>
 
                 <PasswordContainer>
