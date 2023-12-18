@@ -63,7 +63,7 @@ const Top = styled.div`
 
 const BBox = styled.button`
 width : 10vw;
-height : 6vh;
+height : 4.5vh;
 
 font-size : 16px;
 
@@ -85,7 +85,7 @@ cursor : pointer;
 
 const SBox = styled.button`
 width : 5vw;
-height : 6vh;
+height : 4.5vh;
 
 padding : 10px 0px;
 
