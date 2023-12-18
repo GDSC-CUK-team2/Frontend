@@ -19,25 +19,27 @@ export default function Test(){
     const [data,setData] = useState<DataType[] | null>();
 
     useEffect(() => {
-        axios
-            .get(`http://35.216.19.44:8080/api/users/me`, 
-                 {
-                headers : {
-                    'Authorization' : `Baerer ${token}`
-                },
-                // params : {
-                //     userId : userId
-                // }
-            }
-            )
-            .then((response) => {
-                console.log(response);
-                setData(response.data.content);
-            })
-            .catch((error) => {
-                console.log('에러:', error.response);
-            });
-    }, []);
+        console.log(document.cookie);
+
+        const params = {
+            keyword: '강남',
+            page: 0
+          };
+      
+        async function getInfo() {
+          try {
+            const result = await axios.get(
+              'http://35.216.62.134:8080/api/restaurants?keyword=한식&page=0',              {params}
+            );
+      
+            console.log(JSON.stringify(result.data));
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      
+        getInfo();
+      }, []);
     
     console.log(data);
 
