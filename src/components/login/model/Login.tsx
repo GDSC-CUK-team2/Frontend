@@ -23,7 +23,7 @@ export default function Login(){
             return {status : 9999};
           }
     
-        const response = await axios.post(`http://35.216.19.44:8080/api/auth/login`, data);
+        const response = await axios.post(`http://35.216.62.134:8080/api/auth/login`, data);
         console.log((response.data ));
         console.log(response.status)
         setCookie("token", `${response.data.accessToken}`, {

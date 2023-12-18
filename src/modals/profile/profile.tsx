@@ -1,6 +1,7 @@
 import React ,{useState} from "react";
 import { styled } from "styled-components";
 import user from "../../assets/image/header_user.svg"
+import getProfile from "../../components/profile/model/CheckProfile";
 import edit from "../../assets/image/edit_icon.svg";
 import SubmitButton from "../../components/button/SubmitButton";
 import CloseModalButton from "../../components/button/CloseModalButton";
@@ -124,7 +125,8 @@ background-color: #f1f1f1;
 
 export default function Profile({onClose} : ProfileProps){
 
-    
+    const profile : any = getProfile();
+    console.log(profile)
     return(
         <ModalBackground>
             
