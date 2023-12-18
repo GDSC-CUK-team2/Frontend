@@ -5,6 +5,8 @@ import getProfile from "../../components/profile/model/CheckProfile";
 import edit from "../../assets/image/edit_icon.svg";
 import SubmitButton from "../../components/button/SubmitButton";
 import CloseModalButton from "../../components/button/CloseModalButton";
+import Alert from "../../components/alert/Alert";
+
 interface ProfileProps {
     onClose: () => void;
   }
@@ -145,7 +147,7 @@ export default function Profile({onClose} : ProfileProps){
     console.log(profile)
     return(
         <ModalBackground>
-            
+            <Alert />
             <Container>
               <Nav>
                 <Left>마이 페이지 {`>`} 프로필 관리
