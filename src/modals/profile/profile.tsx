@@ -9,6 +9,9 @@ import SubmitButton from "../../components/button/SubmitButton";
 import CloseModalButton from "../../components/button/CloseModalButton";
 import Alert from "../../components/alert/Alert";
 
+import userAlert from "../../assets/image/user_alert.svg"
+
+
 interface ProfileProps {
     onClose: () => void;
   }
@@ -152,7 +155,7 @@ export default function Profile({onClose} : ProfileProps){
 
     return(
         <ModalBackground>
-            <Alert />
+            
             <Container>
               <Nav>
                 <Left>마이 페이지 {`>`} 프로필 관리
@@ -206,7 +209,14 @@ export default function Profile({onClose} : ProfileProps){
                     확인
                   </SubmitButton>
                 </ButtonContainer>
+               
             </Container>
+            {/* <Alert 
+              image={userAlert}
+              text1='내용이 저장되지 않았어요' 
+              text2='작성된 모든 내용이 사라지고' 
+              text3='홈 화면으로 이동합니다.' 
+            /> */}
         </ModalBackground>
     )
 }
