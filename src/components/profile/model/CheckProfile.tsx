@@ -19,9 +19,6 @@ export default function CheckProfile(){
                 headers : {
                     'Authorization' : `Baerer ${token}`
                 },
-                // params : {
-                //     userId : userId
-                // }
             }
             )
             .then((response) => {
@@ -29,6 +26,7 @@ export default function CheckProfile(){
                 // setData(response.data.content);
             })
             .catch((error) => {
+                console.log('에러:', error);
                 console.log('에러:', error.response);
             });
     }, []);
