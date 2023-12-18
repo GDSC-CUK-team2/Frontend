@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.js": "/matna/static/js/main.84a62013.js",
+    "static/js/787.540a525e.chunk.js": "/matna/static/js/787.540a525e.chunk.js",
+    "static/media/matna_background.svg": "/matna/static/media/matna_background.d565cbf25139b2cf0ac9ce079de9a94c.svg",
+    "static/media/map.svg": "/matna/static/media/map.2e1cec2f288fc0963a2791a71001c347.svg",
+    "static/media/header_logo.svg": "/matna/static/media/header_logo.c868049648309d254f52133cef10f229.svg",
+    "static/media/mypage_button.svg": "/matna/static/media/mypage_button.6d400af21b5aed475d265dc1d8d8affe.svg",
+    "static/media/cross_curtley.svg": "/matna/static/media/cross_curtley.1306c79a19d87cc6d6dd73fe3529e66b.svg",
+    "static/media/white_logo_with_text.svg": "/matna/static/media/white_logo_with_text.7798d80341eb9f0a50714ba2f4647fc0.svg",
+    "static/media/matna.svg": "/matna/static/media/matna.525164224e253c23c381a41e338ab1dc.svg",
+    "static/media/apple.svg": "/matna/static/media/apple.13db633e6359cf457980f53d44997591.svg",
+    "static/media/star.svg": "/matna/static/media/star.e59e58e3963d61ff7cde20f6889f6d0f.svg",
+    "static/media/hot.svg": "/matna/static/media/hot.5165878828d4332758e25939c3a36d8a.svg",
+    "static/media/edit_icon.svg": "/matna/static/media/edit_icon.163e8b3aeb33585dc78f334676ec07bb.svg",
+    "static/media/heart_circle.svg": "/matna/static/media/heart_circle.cd4f52beeda2177f31acdd86afd87ed2.svg",
+    "static/media/view.svg": "/matna/static/media/view.9150c8b68e769dcb9c5160de8408b6e9.svg",
+    "static/media/heart.svg": "/matna/static/media/heart.03b7df0e280270b14866a3cd5ad4c791.svg",
+    "static/media/header_user.svg": "/matna/static/media/header_user.fb48e7c73aa5ca336175982f0660554b.svg",
+    "index.html": "/matna/index.html",
+    "static/media/curtley.svg": "/matna/static/media/curtley.7987be91d42c6593050d20c7b13afbf1.svg",
+    "static/media/cutlery.svg": "/matna/static/media/cutlery.ddd0d502d22452009ec4b5513dbae25d.svg",
+    "static/media/search_icon.svg": "/matna/static/media/search_icon.1222a3342413e6a3a6ce836859126700.svg",
+    "static/media/search.svg": "/matna/static/media/search.b02f390542bf7f29ecbe93fa81f126d7.svg",
+    "static/media/kakao.svg": "/matna/static/media/kakao.9e94e5336f689089043057813dca646b.svg",
+    "static/media/facebook.svg": "/matna/static/media/facebook.4e98c6fe6049c4d3fb57c136a69734e4.svg",
+    "static/media/comment.svg": "/matna/static/media/comment.60e2e65c82dc54ad3d1e545395f4b4c1.svg",
+    "static/media/close.svg": "/matna/static/media/close.7ed8f6ebbe292c5860d0dcd11ced99fc.svg",
+    "static/media/none_card.svg": "/matna/static/media/none_card.e0b34dc01a98f3fae9f68de201165948.svg",
+    "static/media/line.svg": "/matna/static/media/line.1be45737d91b6b843dc5283ee44e154f.svg",
+    "static/media/red_line.svg": "/matna/static/media/red_line.3c0b62f89b5b1692aaa35c0d967883a4.svg",
+    "main.84a62013.js.map": "/matna/static/js/main.84a62013.js.map",
+    "787.540a525e.chunk.js.map": "/matna/static/js/787.540a525e.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.84a62013.js"
+  ]
+}
