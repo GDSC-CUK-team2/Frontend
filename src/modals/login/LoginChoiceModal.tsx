@@ -9,6 +9,7 @@ import apple from '../../assets/image/login/apple.svg';
 import SignUp from "../signup/SignUp";
 import Login from './Login'
 import CloseModalButton from "../../components/button/CloseModalButton";
+import SignUpModal from "../../components/signup/controller/SignUpModal";
 
 interface UserSimpleProps {
     onClose: () => void;
@@ -104,7 +105,7 @@ export default function LoginChoiceModal({onClose} : UserSimpleProps){
           
             <Container>
               <CloseModalButton onClick={onClose} />
-              {viewSignUp && <SignUp onClose={close}/>}
+              {viewSignUp && <SignUpModal onClose={close}/>}
               {viewLogin && <Login onClose={closeLogin} />}
                 <TitleContainer>
                     <BP>로그인하기</BP>

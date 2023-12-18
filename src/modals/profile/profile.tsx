@@ -5,10 +5,15 @@ import getProfile from "../../components/profile/model/CheckProfile";
 import edit from "../../assets/image/edit_icon.svg";
 import SubmitButton from "../../components/button/SubmitButton";
 import CloseModalButton from "../../components/button/CloseModalButton";
+import Alert from "../../components/alert/Alert";
+
 interface ProfileProps {
     onClose: () => void;
   }
-
+interface EditProps {
+    width: string;
+    height: string;
+  }
 const ModalBackground = styled.div`
   position: fixed;
   top: 0;
@@ -21,9 +26,7 @@ const ModalBackground = styled.div`
 const Container = styled.div`
   width: 1000px;
   height: 80vh;
-  @media (max-height: 1200px) {
-    height: 500px;
-  }
+
   position: absolute;
   top: 50%;
   left: 50%;
@@ -34,10 +37,6 @@ const Container = styled.div`
   border-radius: 15px;
 
   color : #000;
-
-  display : flex;
-  flex-direction : column;
-  justify-content : start;
 
 `
 
@@ -56,21 +55,32 @@ const Right = styled.div`
 `
 const Image = styled.div`
 margin-top: 40px;
-img {
+
+.profile{
   width : 160px;
   height : 160px;
   border-radius : 100px;
   background : yellow;
 }
+p{
+  font-size : 24px;
+}
+`
+
+const Edit = styled.img<EditProps>`
+ width: ${(props) => props.width};
+  height: ${(props) => props.height};
 `
 const EmailContainer = styled.div`
+width : 405px;
 
-margin-bottom : 2vh;
+margin : 2vh auto;
 
 `
 const PasswordContainer = styled.div`
-margin-bottom : 2vh;
+width : 405px;
 
+margin : 2vh auto;
 `
 const SnsContainer = styled.div`
 display: flex;
@@ -78,7 +88,13 @@ justify-content: center;
 
 
 `
-
+const EditBox = styled.div`
+display : flex;
+justify-content : flex-end;
+p{
+  font-size : 15px;
+}
+`
 const Box = styled.div`
 display : inline-block;
 width : 80px;
@@ -100,8 +116,10 @@ const Input = styled.input`
 `
 
 const ButtonContainer = styled.div`
-display: flex;
-justify-content: flex-end;
+position : absolute;
+
+top : 70vh;
+right : 0px;
 `
 
 const Back = styled.button`
@@ -129,7 +147,7 @@ export default function Profile({onClose} : ProfileProps){
     console.log(profile)
     return(
         <ModalBackground>
-            
+            <Alert />
             <Container>
               <Nav>
                 <Left>마이 페이지 {`>`} 프로필 관리
@@ -141,12 +159,17 @@ export default function Profile({onClose} : ProfileProps){
                 </Right>
               </Nav>
                 <Image>
-                  <img src={user} alt='x' />
-                  <p>닉네임  </p>
-                  {/* <img src={edit} alt='x' /> */}
+                  <img className="profile" src={user} alt='x' />
+                  <p>닉네임 <Edit width='20px' height='20px' src={edit} alt='x' /> </p>
+
                 </Image>
 
+
                 <EmailContainer>
+                  <EditBox>
+                    <p>로그인 정보 수정 <Edit width='16px' height='16px' src={edit} alt='x' /> </p>
+ 
+                  </EditBox>
                    <Box>
                     <span>이메일</span>
                   </Box>                 
@@ -161,14 +184,14 @@ export default function Profile({onClose} : ProfileProps){
 
                 </PasswordContainer>
 
-                <SnsContainer>
+                {/* <SnsContainer>
                   <Box>
                     <span>SNS <br /> </span>
                     <span>로그인 계정 </span>
                   </Box>
                   
                   <Input />
-                </SnsContainer>
+                </SnsContainer> */}
                 <ButtonContainer>
                   <Back onClick={onClose}>
                     취소

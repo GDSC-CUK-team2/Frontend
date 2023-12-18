@@ -11,6 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     body{
         margin : 0px;
         font-family : Pretendard-Regular;
-        
+        overflow-x: hidden;
+
     }
 `
