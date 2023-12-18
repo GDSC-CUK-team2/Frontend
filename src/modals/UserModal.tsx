@@ -29,6 +29,7 @@ const ModalBackground = styled.div`
 
 const Container = styled.div`
   width: 25vw;
+
   height: 93vh;
 
   border-radius : 40px 0px 0px 40px;
@@ -41,6 +42,9 @@ const Container = styled.div`
 
   animation: ${slideIn} 0.5s ease-in-out; 
 
+  @media (max-width: 1200px) {
+    width: 300px;
+  }
 `
 
 const Top = styled.div`
@@ -58,6 +62,11 @@ const Top = styled.div`
 
   display : flex;
   align-items : center;
+  font-family : Pretendard-Regular;
+
+  @media (max-width: 1200px) {
+    width: 300px;
+  }
 
 `
 
@@ -81,11 +90,18 @@ cursor : pointer;
 &:focus {
     background : #e54545;
   }
+
+  font-family : Pretendard-Regular;
+
+  @media (max-width: 1200px) {
+    width: 120px;
+  }
+
 `
 
 const SBox = styled.button`
 width : 5vw;
-height : 4.5vh;
+height : 4vh;
 
 padding : 10px 0px;
 
@@ -106,6 +122,10 @@ cursor : pointer;
     background : #e54545;
   }
 
+  font-family : Pretendard-Regular;
+  @media (max-width: 1200px) {
+    width: 60px;
+  }
 
 `
 const Restaurant = styled.div`
@@ -118,6 +138,11 @@ const Restaurant = styled.div`
   background : #FCFCFC;
 
   border-bottom : 1px solid #e2e2e2;
+
+  font-family : Pretendard-Regular;
+
+
+
 `
 
 const ProfileContainer = styled.div`
@@ -127,6 +152,8 @@ const ProfileContainer = styled.div`
 `
 const ProfileButton = styled.div`
 color : #4C4C4C;
+font-family : Pretendard-Regular;
+
 `
 
 const LoginContainer = styled.div`
@@ -138,7 +165,7 @@ const LoginContainer = styled.div`
 
 const LoginButton = styled.button`
 
-  width : 371px;
+  width : 24vw;
   height : 60px;
 
   border : 2.4px #e54444 solid;
@@ -147,6 +174,13 @@ const LoginButton = styled.button`
   color : #e55444;
 
   background : #fff;
+
+  font-size : 16px;
+  font-weight : 600;
+  font-family : Pretendard-Regular;
+  @media (max-width: 1200px) {
+    width: 290px;
+  }
 
 `
 
