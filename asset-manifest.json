@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "/matna/static/js/main.edfdfe15.js",
+    "main.js": "/matna/static/js/main.84a62013.js",
     "static/js/787.540a525e.chunk.js": "/matna/static/js/787.540a525e.chunk.js",
     "static/media/matna_background.svg": "/matna/static/media/matna_background.d565cbf25139b2cf0ac9ce079de9a94c.svg",
     "static/media/map.svg": "/matna/static/media/map.2e1cec2f288fc0963a2791a71001c347.svg",
@@ -29,10 +29,10 @@
     "static/media/none_card.svg": "/matna/static/media/none_card.e0b34dc01a98f3fae9f68de201165948.svg",
     "static/media/line.svg": "/matna/static/media/line.1be45737d91b6b843dc5283ee44e154f.svg",
     "static/media/red_line.svg": "/matna/static/media/red_line.3c0b62f89b5b1692aaa35c0d967883a4.svg",
-    "main.edfdfe15.js.map": "/matna/static/js/main.edfdfe15.js.map",
+    "main.84a62013.js.map": "/matna/static/js/main.84a62013.js.map",
     "787.540a525e.chunk.js.map": "/matna/static/js/787.540a525e.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.edfdfe15.js"
+    "static/js/main.84a62013.js"
   ]
 }
