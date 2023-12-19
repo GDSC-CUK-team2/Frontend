@@ -105,7 +105,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, restaurantId }) => {
       }
     return (
         <ModalOverlay onClick={onClose}>
-            <ModalContent onClick={(e) => e.stopPropagation()}>
+            <ModalContent onClick={(e) => e.stopPropagation()} >
                 <Container>
                 <MainInfo>
                     <MainRight>
@@ -195,6 +195,7 @@ const ModalOverlay = styled.div`
     display: flex;
     justify-content: center;
     align-items: end;
+    
 `;
 
 const ModalContent = styled.div`

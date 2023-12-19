@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import UserModal from '../../modals/UserModal';
 import { getCookie } from '../../cookie/Cookie';
+import { useNavigate } from 'react-router-dom';
 
 const HeaderContainer = styled.div`
   width: 77vw;
@@ -51,7 +52,7 @@ const UserIcon = styled.div`
 `
 
 export default function Header() {
-
+  const navigate = useNavigate();
   let token = getCookie('token');
   console.log(token);
   // 유저아이콘 클릭
@@ -73,9 +74,9 @@ export default function Header() {
         <Title>MATNA</Title>
       </LeftContainer>
       <RightContainer>
-        {token ? 
+        {/* {token ? 
         <MyPage>마이페이지</MyPage>
-        : <></>}
+        : <></>} */}
         {/* 유저 아이콘 클릭시 */}
         {view && 
         <UserModal onClose={close}/>
