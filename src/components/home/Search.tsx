@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 import search from '../../assets/image/search.svg';
 import cutlery from '../../assets/image/cutlery.svg';
+import { useNavigate } from 'react-router-dom';
 
 const SearchContainer = styled.div`
   display: flex;
@@ -50,12 +51,33 @@ const SearchIcon = styled.div`
 `;
 
 export default function Search() {
+  const navigate = useNavigate();
+  const [searchText, setSearchText] = useState("");
+
+  const handleSearch = () => {
+    if (searchText) {
+      navigate(`/search/${searchText}`);
+    }
+  }
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  }
+
+  const handleSearchTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchText(e.target.value);
+  }
   return (
     <SearchContainer>
       <CutleryIcon>  
       <img src={cutlery} alt='x' />
       </CutleryIcon>
-      <SearchInput placeholder="검색어를 입력하세요." />
+      <SearchInput placeholder="검색어를 입력하세요." 
+       value={searchText}
+       onChange={handleSearchTextChange}
+       onKeyPress={handleKeyPress} />
       <SearchIcon>
         <img src={search} alt='x' />
       </SearchIcon>

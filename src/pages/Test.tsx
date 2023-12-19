@@ -18,34 +18,42 @@ export default function Test(){
 
     const [data,setData] = useState<DataType[] | null>();
 
-    useEffect(() => {
-        console.log(document.cookie);
+    const response = axios.post(
+      `http://35.216.62.134:8080/api/restaurants/2038057904/reviews`,
+      {
+          'userId': '2',
+          'rating': 'GOOD',
+          'comment': "좋습니다 좋습니다",
+          'image': ''
+      },
+        {headers:{
+            'Authorization': token
+        },
+      },  
+    );
 
-        const params = {
-            keyword: '강남',
-            page: 0
-          };
-      
-        async function getInfo() {
-          try {
-            const result = await axios.get(
-              'http://35.216.62.134:8080/api/restaurants?keyword=한식&page=0',              {params}
-            );
-      
-            console.log(JSON.stringify(result.data));
-          } catch (error) {
-            console.log(error);
-          }
-        }
-      
-        getInfo();
-      }, []);
-    
-    console.log(data);
+    const h = async () =>{
+      await axios.post(
+        `http://35.216.62.134:8080/api/restaurants/2038057904/reviews`,
+        {
+            'userId': 2,
+            'rating': 'GOOD',
+            'comment': "좋습니다 좋습니다",
+            'image': ''
+        },
+          {headers:{
+              'Authorization': token
+          },
+        },  
+      );
+    }
 
     return(
         <>
             테스트 페이지
+            <button onClick={h}>
+              포스트
+            </button>
         </>
     )
 }
