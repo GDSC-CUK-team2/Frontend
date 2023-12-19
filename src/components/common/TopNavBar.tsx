@@ -5,6 +5,9 @@ import logo from "../../assets/image/topbar/white_logo_with_text.svg";
 import curtley from "../../assets/image/topbar/curtley.svg";
 import search_icon from "../../assets/image/topbar/search_icon.svg";
 import mypage from "../../assets/image/topbar/mypage_button.svg";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import UserModal from "../../modals/UserModal";
 
 const TopBar = styled.div`
   position: fixed;
@@ -74,6 +77,12 @@ const MyPageButton = styled.img`
   margin-left: 237px;
 `;
 
+const UserIcon = styled.div`
+  font-size: 20px; /* 아이콘 크기 조정 */
+  margin-left: 237px;
+
+`
+
 export default function TopNavBar() {
   const navigate = useNavigate();
   const [searchText, setSearchText] = useState("");
@@ -93,7 +102,16 @@ export default function TopNavBar() {
   const handleSearchTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
   }
+  // 유저아이콘 클릭
+  const [view,setView] = useState<boolean>(false);
 
+  const open = () => {
+    setView(true);
+  };
+
+  const close = () => {
+    setView(false);
+  };
   return (
     <TopBar>
       <Container>
@@ -112,8 +130,16 @@ export default function TopNavBar() {
             <img width={'15.69px'} height={'15.69px'} src={search_icon} />
           </SearchButton>
         </SearchContainer>
-        <MyPageButton src={mypage} />
-      </Container>
+        {view && 
+        <UserModal onClose={close}/>
+
+        }
+        <UserIcon onClick={open}>
+          <FontAwesomeIcon icon={faUser} />
+        </UserIcon>
+        </Container>
+
+        
     </TopBar>
   );
 }
