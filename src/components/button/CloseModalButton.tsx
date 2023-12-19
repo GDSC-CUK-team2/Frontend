@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 
 import close from '../../assets/image/close.svg';
 
-interface ButtonProps {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: (e: React.MouseEvent) => void;
 
 }
@@ -29,7 +29,7 @@ background : transparent;
     cursor : pointer;
     }
 `
-export default function SubmitButton({onClick} : ButtonProps){
+export default function CloseModalButton({onClick} : ButtonProps){
     return(
         <Button onClick={onClick} type='button'>
             <img src={close} alt='x' />

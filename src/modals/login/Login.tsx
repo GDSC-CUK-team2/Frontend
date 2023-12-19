@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 import { setCookie } from "../../cookie/Cookie";
 
 import SubmitButton from "../../components/button/SubmitButton";
-import useLogin from "../../components/login/hooks/useLogin";
+import getLogin from "../../components/login/model/Login";
 import CloseModalButton from "../../components/button/CloseModalButton";
 
 interface LoginProps {
@@ -102,8 +102,7 @@ const ButtonContainer = styled.div`
 
 export default function Login({onClose} : LoginProps) {
 
-    const {login} = useLogin();
-    console.log(login);
+    const {login} = getLogin();
     
     const [formData, setFormData] = useState({
         email: "",
@@ -123,7 +122,7 @@ export default function Login({onClose} : LoginProps) {
     
     const handleLogin = async () => {
         const loginResult = await login({ email, password });
-    
+        console.log(loginResult)
         if (loginResult.status === 200) {
           // 로그인 성공 시 모달 닫기
           window.location.replace("/")
@@ -132,8 +131,6 @@ export default function Login({onClose} : LoginProps) {
         }
         // 로그인 상태에 따른 처리를 더 추가할 수 있습니다.
       };
-
-
 
     return (
 
@@ -178,7 +175,7 @@ export default function Login({onClose} : LoginProps) {
             </Form>
             <ButtonContainer>
 
-                <SubmitButton onClick={handleLogin}>
+                <SubmitButton onClick={handleLogin} background="#f1f1f1">
                 </SubmitButton>
 
             </ButtonContainer>

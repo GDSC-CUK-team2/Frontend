@@ -2,6 +2,9 @@ import React ,{useState} from "react";
 import heart_circle from "../assets/image/heart_circle.svg";
 import LoginChoiceModal from "./login/LoginChoiceModal";
 import { styled , keyframes} from "styled-components";
+import SRestItem from "../components/list/SRestItem";
+import Profile from "./profile/Profile";
+
 interface UserSimpleProps {
     onClose: () => void;
   }
@@ -25,28 +28,32 @@ const ModalBackground = styled.div`
 `;
 
 const Container = styled.div`
-  width: 400px;
-  height: 800px;
+  width: 25vw;
+
+  height: 93vh;
 
   border-radius : 40px 0px 0px 40px;
   
   position: absolute;
-  top: 7%;
+  top: 6vh;
   right: 0%;
 
   background-color: #FCFCFC;
 
-  animation: ${slideIn} 0.5s ease-in-out; // 슬라이딩 애니메이션 적용
+  animation: ${slideIn} 0.5s ease-in-out; 
 
+  @media (max-width: 1200px) {
+    width: 300px;
+  }
 `
 
 const Top = styled.div`
   position: absolute;
-  top: 1%;
-  right: 0%;
+  top: 3%;
+  right: -1%;
 
-  width : 386px;
-  height : 57px;
+  width : 25vw;
+  height : 6vh;
 
   border-radius : 40px 0px 0px 40px;
 
@@ -55,12 +62,17 @@ const Top = styled.div`
 
   display : flex;
   align-items : center;
+  font-family : Pretendard-Regular;
+
+  @media (max-width: 1200px) {
+    width: 300px;
+  }
 
 `
 
 const BBox = styled.button`
-width : 140px;
-height : 40px;
+width : 10vw;
+height : 4.5vh;
 
 font-size : 16px;
 
@@ -78,11 +90,18 @@ cursor : pointer;
 &:focus {
     background : #e54545;
   }
+
+  font-family : Pretendard-Regular;
+
+  @media (max-width: 1200px) {
+    width: 120px;
+  }
+
 `
 
 const SBox = styled.button`
-width : 70px;
-height : 40px;
+width : 5vw;
+height : 4vh;
 
 padding : 10px 0px;
 
@@ -103,25 +122,68 @@ cursor : pointer;
     background : #e54545;
   }
 
+  font-family : Pretendard-Regular;
+  @media (max-width: 1200px) {
+    width: 60px;
+  }
+
+`
+const Restaurant = styled.div`
+  position: absolute;
+  top: 12vh;
+
+  width : 100%;
+  height : 65vh;
+
+  background : #FCFCFC;
+
+  border-bottom : 1px solid #e2e2e2;
+
+  font-family : Pretendard-Regular;
+
+
+
+`
+
+const ProfileContainer = styled.div`
+  position: absolute;
+  top: 80vh;
+  right : 1%;
+`
+const ProfileButton = styled.div`
+color : #4C4C4C;
+font-family : Pretendard-Regular;
+
+`
+
+const LoginContainer = styled.div`
+  position: absolute;
+  top: 83vh;
+  left : 4%;
 
 `
 
 const LoginButton = styled.button`
-  
 
-  width : 371px;
+  width : 24vw;
   height : 60px;
 
-  border : 0px;
+  border : 2.4px #e54444 solid;
   border-radius : 40px;
 
-  color : #fff;
-  background : #e55444;
+  color : #e55444;
 
-  margin: 720px auto; /* LoginButton을 하단으로 내립니다. */
+  background : #fff;
 
+  font-size : 16px;
+  font-weight : 600;
+  font-family : Pretendard-Regular;
+  @media (max-width: 1200px) {
+    width: 290px;
+  }
 
 `
+
 
 export default function UserModal({onClose} : UserSimpleProps){
 
@@ -145,8 +207,21 @@ export default function UserModal({onClose} : UserSimpleProps){
         setViewLogin(false);
     }
     
+        // 프로필 창을 여는 상태
+        const [viewProfile,setViewProfile] = useState<boolean>(false);
+    
+        const openProfile = () => {
+            setViewProfile(true);
+    
+        }
+    
+        const closeProfile = () =>{
+            setViewProfile(false);
+        }
     return(
+      
         <ModalBackground onClick={closeModal}>
+
             <Container>
                 <Top>
                   <BBox>
@@ -161,9 +236,21 @@ export default function UserModal({onClose} : UserSimpleProps){
                   </SBox>
                 </Top>
                 
+                <Restaurant>
+                  <SRestItem />
+                </Restaurant>
+
+                <ProfileContainer>
+                  <ProfileButton onClick={openProfile}>
+                    내 프로필 관리 {`>`}
+                  </ProfileButton>
+                </ProfileContainer>
                 {/* 로그인 모달창 */}
-                {viewLogin && <LoginChoiceModal onClose={close} />}
+                <LoginContainer>
                 <LoginButton onClick={open}>로그인 하기</LoginButton>
+                </LoginContainer>
+                {viewLogin && <LoginChoiceModal onClose={close} />}
+                {viewProfile && <Profile onClose={closeProfile} /> }
 
             </Container>
         </ModalBackground>
