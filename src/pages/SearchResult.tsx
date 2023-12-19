@@ -31,6 +31,7 @@ export default function Search() {
         const response = await axios.get(
           `http://35.216.62.134:8080/api/restaurants?keyword=${keyword}&page=45`
         );
+        console.log(response)
         setResult([...response.data.results]);
       } catch (error) {
         console.log(error);
