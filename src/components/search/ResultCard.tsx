@@ -2,6 +2,72 @@ import styled from "styled-components";
 import star from "../../assets/image/search/star.svg";
 import comment from "../../assets/image/search/comment.svg";
 import view from "../../assets/image/search/view.svg";
+import { useState } from "react";
+
+import Modal from "../../modals/search/RestaurantDetail";
+
+interface ResultType {
+    id : string,
+    name: string,
+    rating: string,
+    address: string,
+    food_type: string,
+    view: string,
+    review: string
+  }
+
+interface ResultCardProps {
+    data: ResultType;
+}
+
+const ResultCard: React.FC<ResultCardProps> = ({ data }) => {
+    const [isModalOpen, setModalOpen] = useState(false);
+    const openModal = () => {
+        setModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
+    const detail = data.food_type.split('>')[1].trim();
+    
+    
+    return (
+        <Container onClick={openModal}>
+            {isModalOpen && <Modal onClose={closeModal} restaurantId={data.id} />}
+            <ImageBox />
+            <Details>
+                <MainInfoBox>
+                    <Rate>
+                        <img width={'20px'} height={'20px'} src={star} />
+                        {data.rating}
+                    </Rate>
+                    <Title>
+                        {data.name}
+                    </Title>
+                    <Detail>
+                        {detail}
+                    </Detail>
+                </MainInfoBox>
+                <SubInfoBox>
+                    <Detail>{data.address}</Detail>
+                    <Detail>
+                        <Icon src={comment}/>
+                        {data.review}
+                    </Detail>
+                    <Detail>
+                        <Icon src={view}/>
+                        {data.view}
+                    </Detail>
+                </SubInfoBox>
+            </Details>
+        </Container>
+    )
+}
+
+
+export default ResultCard;
 
 const Container = styled.div`
     width: 316px;
@@ -60,7 +126,7 @@ const Rate = styled.div`
 
 const Title = styled.div`
     //width: 64px;
-    height: 29px;
+    height: auto;
     font-size: 24px;
     font-weight: 500;
     color: #4C4C4C;
@@ -79,36 +145,3 @@ const Icon = styled.img`
     width: 17.6px;
     margin-right: 5.5px;
 `;
-
-export default function ResultCard() {
-    return (
-        <Container>
-            <ImageBox />
-            <Details>
-                <MainInfoBox>
-                    <Rate>
-                        <img width={'20px'} height={'20px'} src={star} />
-                        9.9
-                    </Rate>
-                    <Title>
-                        상호명
-                    </Title>
-                    <Detail>
-                        카테고리
-                    </Detail>
-                </MainInfoBox>
-                <SubInfoBox>
-                    <Detail>지역</Detail>
-                    <Detail>
-                        <Icon src={comment}/>
-                        123
-                    </Detail>
-                    <Detail>
-                        <Icon src={view}/>
-                        444
-                    </Detail>
-                </SubInfoBox>
-            </Details>
-        </Container>
-    )
-}
