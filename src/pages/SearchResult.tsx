@@ -1,12 +1,108 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { getCookie } from "../cookie/Cookie";
+
 import TopNavBar from "../components/common/TopNavBar";
 import ResultCard from "../components/search/ResultCard";
 import styled from "styled-components";
 import cross_curtley from "../assets/image/search/cross_curtley.svg"
 import MapBox from "../components/search/MapBox";
 import Recommended from "../components/search/Recommended";
+
+interface ResultType {
+  id : string,
+  name: string,
+  rating: string,
+  address: string,
+  food_type: string,
+  view: string,
+  review: string
+}
+
+// export default function Search() {
+//     const { keyword } = useParams();
+//     const [result, setResult] = useState<ResultType[]>([]);
+//     useEffect(() => {    
+//         async function getInfo() {
+//           try {
+//             const response = await axios.get(
+//               `http://35.216.62.134:8080/api/restaurants?keyword=${keyword}&page=45`,
+              
+//             );
+      
+//             setResult([...response.data.results]);
+//           } catch (error) {
+//             console.log(error);
+//           }
+//         }
+      
+//         getInfo();
+//       }, [keyword]);
+
+//     return (
+//         <>
+//             <TopNavBar />
+//             <Container>
+//                 <SearchResults>
+//                     <ResultText>
+//                         <img width={'32px'} height={'32px'} src={cross_curtley} />
+//                         <Keyword>{keyword}</Keyword>
+//                         (으)로 찾아본 결과에요
+//                     </ResultText>
+//                     <SubText>총 999개의 장소를 찾았어요</SubText>
+
+//                     <ResultCards>
+//                         {
+//                           result.map((e) => (
+//                             <ResultCard data = {e}/>
+//                           ))
+//                         }
+//                     </ResultCards>
+//                 </SearchResults>
+//                 <SubInfos>
+//                     <MapBox/>
+//                     <Recommended/>
+//                 </SubInfos>
+//             </Container>
+
+//         </>
+//     )
+// }
+
+export default function Search() {
+  const { keyword } = useParams();
+  const [result, setResult] = useState<ResultType[]>([]);
+  
+
+  return (
+      <>
+          <TopNavBar />
+          <Container>
+              <SearchResults>
+                  <ResultText>
+                      <img width={'32px'} height={'32px'} src={cross_curtley} />
+                      <Keyword>{keyword}</Keyword>
+                      (으)로 찾아본 결과에요
+                  </ResultText>
+                  <SubText>총 999개의 장소를 찾았어요</SubText>
+
+                  <ResultCards>
+                      <ResultCard/>
+                      <ResultCard/>
+                      <ResultCard/>
+                      <ResultCard/>
+                  </ResultCards>
+              </SearchResults>
+              {/* <SubInfos>
+                  <MapBox/>
+                  <Recommended/>
+              </SubInfos> */}
+          </Container>
+
+      </>
+  )
+}
 
 const Container = styled.div`
   display  :flex ;
@@ -56,51 +152,3 @@ const SubInfos = styled.div`
   display: flex;
   flex-direction  :column ;
 `;
-
-export default function Search() {
-    const { keyword } = useParams();
-    
-    useEffect(()=>{
-        console.log('asdf');
-        async function getInfo(){
-            const result = await axios.get(
-                'http://34.64.153.218:8080/api/restaurants'
-            )
-            .then((result)=>{
-                console.log(JSON.stringify(result));
-            })
-            .catch((error)=>{
-                console.log(error);
-            })
-        }
-        getInfo();
-    })
-
-    return (
-        <>
-            <TopNavBar />
-            <Container>
-                <SearchResults>
-                    <ResultText>
-                        <img width={'32px'} height={'32px'} src={cross_curtley} />
-                        <Keyword>{keyword}</Keyword>
-                        (으)로 찾아본 결과에요
-                    </ResultText>
-                    <SubText>총 999개의 장소를 찾았어요</SubText>
-                    <ResultCards>
-                        <ResultCard />
-                        <ResultCard />
-                        <ResultCard />
-                        <ResultCard />
-                        <ResultCard />
-                    </ResultCards>
-                </SearchResults>
-                <SubInfos>
-                    <MapBox/>
-                    <Recommended/>
-                </SubInfos>
-            </Container>
-
-        </>
-    )
-}
