@@ -20,52 +20,7 @@ interface ResultCardProps {
     data: ResultType;
 }
 
-// const ResultCard: React.FC<ResultCardProps> = ({ data }) => {
-//     const [isModalOpen, setModalOpen] = useState(false);
-//     const openModal = () => {
-//         setModalOpen(true);
-//     };
-
-//     const closeModal = () => {
-//         setModalOpen(false);
-//     };
-
-//     const detail = data.food_type.split('>')[1].trim();
-    
-    
-//     return (
-//         <Container onClick={openModal}>
-//             {isModalOpen && <Modal onClose={closeModal} restaurantId={data.id} />}
-//             <ImageBox />
-//             <Details>
-//                 <MainInfoBox>
-//                     <Rate>
-//                         <img width={'20px'} height={'20px'} src={star} />
-//                         {data.rating}
-//                     </Rate>
-//                     <Title>
-//                         {data.name}
-//                     </Title>
-//                     <Detail>
-//                         {detail}
-//                     </Detail>
-//                 </MainInfoBox>
-//                 <SubInfoBox>
-//                     <Detail>{data.address}</Detail>
-//                     <Detail>
-//                         <Icon src={comment}/>
-//                         {data.review}
-//                     </Detail>
-//                     <Detail>
-//                         <Icon src={view}/>
-//                         {data.view}
-//                     </Detail>
-//                 </SubInfoBox>
-//             </Details>
-//         </Container>
-//     )
-// }
-function ResultCard() {
+const ResultCard: React.FC<ResultCardProps> = ({ data }) => {
     const [isModalOpen, setModalOpen] = useState(false);
     const openModal = () => {
         setModalOpen(true);
@@ -75,41 +30,43 @@ function ResultCard() {
         setModalOpen(false);
     };
 
-   
+    const detail = data.food_type.split('>')[1].trim();
     
     
     return (
         <Container onClick={openModal}>
-            {isModalOpen && <Modal onClose={closeModal} />}
+            {isModalOpen && <Modal onClose={closeModal} restaurantId={data.id} />}
             <ImageBox />
             <Details>
                 <MainInfoBox>
                     <Rate>
                         <img width={'20px'} height={'20px'} src={star} />
-                        8.8
+                        {data.rating}
                     </Rate>
                     <Title>
-                        제목
+                        {data.name}
                     </Title>
                     <Detail>
-                        디테일
+                        {detail}
                     </Detail>
                 </MainInfoBox>
                 <SubInfoBox>
-                    <Detail>주소</Detail>
+                    <Detail>{data.address}</Detail>
                     <Detail>
                         <Icon src={comment}/>
-                        4
+                        {data.review}
                     </Detail>
                     <Detail>
                         <Icon src={view}/>
-                        4
+                        {data.view}
                     </Detail>
                 </SubInfoBox>
             </Details>
         </Container>
     )
 }
+
+
 export default ResultCard;
 
 const Container = styled.div`

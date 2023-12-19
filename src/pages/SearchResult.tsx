@@ -20,88 +20,54 @@ interface ResultType {
   review: string
 }
 
-// export default function Search() {
-//     const { keyword } = useParams();
-//     const [result, setResult] = useState<ResultType[]>([]);
-//     useEffect(() => {    
-//         async function getInfo() {
-//           try {
-//             const response = await axios.get(
-//               `http://35.216.62.134:8080/api/restaurants?keyword=${keyword}&page=45`,
-              
-//             );
-      
-//             setResult([...response.data.results]);
-//           } catch (error) {
-//             console.log(error);
-//           }
-//         }
-      
-//         getInfo();
-//       }, [keyword]);
-
-//     return (
-//         <>
-//             <TopNavBar />
-//             <Container>
-//                 <SearchResults>
-//                     <ResultText>
-//                         <img width={'32px'} height={'32px'} src={cross_curtley} />
-//                         <Keyword>{keyword}</Keyword>
-//                         (으)로 찾아본 결과에요
-//                     </ResultText>
-//                     <SubText>총 999개의 장소를 찾았어요</SubText>
-
-//                     <ResultCards>
-//                         {
-//                           result.map((e) => (
-//                             <ResultCard data = {e}/>
-//                           ))
-//                         }
-//                     </ResultCards>
-//                 </SearchResults>
-//                 <SubInfos>
-//                     <MapBox/>
-//                     <Recommended/>
-//                 </SubInfos>
-//             </Container>
-
-//         </>
-//     )
-// }
-
 export default function Search() {
-  const { keyword } = useParams();
-  const [result, setResult] = useState<ResultType[]>([]);
-  
+    const { keyword } = useParams();
+    const [result, setResult] = useState<ResultType[]>([]);
+    useEffect(() => {    
+        async function getInfo() {
+          try {
+            const response = await axios.get(
+              `http://35.216.62.134:8080/api/restaurants?keyword=${keyword}&page=45`,
+              
+            );
+      
+            setResult([...response.data.results]);
+          } catch (error) {
+            console.log(error);
+          }
+        }
+      
+        getInfo();
+      }, [keyword]);
 
-  return (
-      <>
-          <TopNavBar />
-          <Container>
-              <SearchResults>
-                  <ResultText>
-                      <img width={'32px'} height={'32px'} src={cross_curtley} />
-                      <Keyword>{keyword}</Keyword>
-                      (으)로 찾아본 결과에요
-                  </ResultText>
-                  <SubText>총 999개의 장소를 찾았어요</SubText>
+    return (
+        <>
+            <TopNavBar />
+            <Container>
+                <SearchResults>
+                    <ResultText>
+                        <img width={'32px'} height={'32px'} src={cross_curtley} />
+                        <Keyword>{keyword}</Keyword>
+                        (으)로 찾아본 결과에요
+                    </ResultText>
+                    <SubText>총 999개의 장소를 찾았어요</SubText>
 
-                  <ResultCards>
-                      <ResultCard/>
-                      <ResultCard/>
-                      <ResultCard/>
-                      <ResultCard/>
-                  </ResultCards>
-              </SearchResults>
-              {/* <SubInfos>
-                  <MapBox/>
-                  <Recommended/>
-              </SubInfos> */}
-          </Container>
+                    <ResultCards>
+                        {
+                          result.map((e) => (
+                            <ResultCard data = {e}/>
+                          ))
+                        }
+                    </ResultCards>
+                </SearchResults>
+                <SubInfos>
+                    <MapBox/>
+                    <Recommended/>
+                </SubInfos>
+            </Container>
 
-      </>
-  )
+        </>
+    )
 }
 
 const Container = styled.div`

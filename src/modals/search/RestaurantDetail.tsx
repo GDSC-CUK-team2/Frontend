@@ -1,63 +1,108 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import axios from "axios";
+import { getCookie } from "../../cookie/Cookie";
 
 import comment from "../../assets/image/search/comment.svg";
 import view from "../../assets/image/search/view.svg";
 import write from "../../assets/image/search/write_review.svg"
-import axios from "axios";
 import ReviewCard from "../../components/review/ReviewCard";
 
 interface ModalProps {
     onClose: () => void;
-    //restaurantId : string;
+    restaurantId : string;
 }
+interface ResultType {
+    id : string,
+    name: string,
+    rating: string,
+    address: string,
+    food_type: string,
+    view: string,
+    review: string
+  }
 
-// const Modal: React.FC<ModalProps> = ({ onClose, restaurantId }) => {
+  interface ReviewType {
+    fileNames: [],
+    reviewEntity: {
+        reviewId: string,
+        shopId: string,
+        userId: string,
+        rating: string,
+        comment: string,
+        createdDate: string,
+        updatedDate: any
+    }
+  }
 
-//     useEffect(() => {    
-//         async function getInfo() {
-//           try {
-//             const response = await axios.get(
-//               `http://35.216.62.134:8080/api/restaurants/{${restaurantId}}`,
 
-//             );
+const Modal: React.FC<ModalProps> = ({ onClose, restaurantId }) => {
+    const [result, setResult] = useState<ResultType>();
+    const [reviews, setReviews] = useState<ReviewType[]>([]);
+    let token = getCookie('token');
+    useEffect(() => {  
+        const param = {
+            restaurant_id: {restaurantId}
+        }  
+        async function getInfo() {
+          try {
+            const response = await axios.get(
+              `http://35.216.62.134:8080/api/restaurants/${restaurantId}`,
+                {headers:{
+                    'restaurant_id': restaurantId
+                }}
+            );
+            setResult(response.data);
 
-//             console.log(JSON.stringify(response))
-//           } catch (error) {
-//             console.log(error);
-//           }
-//         }
+            //console.log(JSON.stringify(response))
+          } catch (error) {
+            console.log(error);
+          }
+        }
 
-//         getInfo();
-//       }, []);
+        async function getReview() {
+            try {
+              const response = await axios.get(
+                `http://35.216.62.134:8080/api/restaurants/${restaurantId}/reviews`,
+                  {headers:{
+                      'restaurant_id': restaurantId
+                  }}
+              );
+              setReviews(response.data);
+  
+              console.log(JSON.stringify(response.data));
+              console.log('success');
+            } catch (error) {
+              console.log(error);
+            }
+          }
 
-//     return (
-//         <ModalOverlay onClick={onClose}>
-//             <ModalContent onClick={(e) => e.stopPropagation()}>
-//                 <MainInfo>
-//                     <RightSide>
-//                     <TitleBox>
-//                         <Title>{restaurantId}</Title>
-//                         <Rating>9.9</Rating>
-//                     </TitleBox>
-//                     <SmallIconBox>
-//                         <SmallIcon src={view} alt="x"/>
-//                         <SmallText>123</SmallText> 
-//                         <SmallIcon src={comment} alt="x"/> 
-//                         <SmallText>12345</SmallText>
-//                     </SmallIconBox>
-//                     </RightSide>
-//                     <BigIcon src={write} alt="x"/>
-//                 </MainInfo>
-//                 <Hr/>
-//                 <CloseButton onClick={onClose}>닫기</CloseButton>
-//             </ModalContent>
-//         </ModalOverlay>
-//     );
-// };
+        getInfo();
+       getReview();
+      }, []);
 
-const Modal: React.FC<ModalProps> = ({ onClose }) => {
 
+      async function test(){
+        try{
+            const response = await axios.post(
+                `http://35.216.62.134:8080/api/restaurants/${restaurantId}/reviews`,
+                {
+                    'userId': 2,
+                    'rating': 'GOOD',
+                    'comment': "좋습니다 좋습니다",
+                    'image': ''
+                },
+                  {headers:{
+                      'Authorization': 'Bearer eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiJkYnN0amQwMjIyQGNhdGhvaWxjLmFjLmtyIiwicm9sZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVVNFUiJ9XSwiaWF0IjoxNzAyOTY4NTA2LCJleHAiOjE3MDM1NzMzMDZ9.R-Y83TBA5QVOEdBT5zbApOaH_evCHbHGdz8ls5XAwoA',
+                      "Content-Type": "multipart/form-data"
+                  },
+                },  
+              );
+              console.log(JSON.stringify(response.data));
+        } catch(error){
+            console.log(error);
+        }
+      }
     return (
         <ModalOverlay onClick={onClose}>
             <ModalContent onClick={(e) => e.stopPropagation()}>
@@ -65,14 +110,14 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
                 <MainInfo>
                     <MainRight>
                         <TitleBox>
-                            <Title fontSize={32}>제목</Title>
-                            <Rating fontSize={32}>9.9</Rating>
+                            <Title fontSize={32}>{result?.name}</Title>
+                            <Rating fontSize={32}>{result?.rating}</Rating>
                         </TitleBox>
                         <SmallIconBox>
                             <SmallIcon src={view} alt="x" />
-                            <SmallText>123</SmallText>
+                            <SmallText>{result?.view}</SmallText>
                             <SmallIcon src={comment} alt="x" />
-                            <SmallText>12345</SmallText>
+                            <SmallText>{result?.review}</SmallText>
                         </SmallIconBox>
                     </MainRight>
                     <BigIcon src={write} alt="x" />
@@ -84,25 +129,29 @@ const Modal: React.FC<ModalProps> = ({ onClose }) => {
                         <SubInfoTitle>음식종류</SubInfoTitle>
                     </SubBox>
                     <SubBox>
-                        <SubInfoDetail>asdf</SubInfoDetail>
-                        <SubInfoDetail>asdf</SubInfoDetail>
+                        <SubInfoDetail>{result?.address}</SubInfoDetail>
+                        <SubInfoDetail>{result?.food_type.split('>')[1].trim()}</SubInfoDetail>
                     </SubBox>
                 </SubInfoBox>
                 <Hr />
                 <TitleBox>
                     <Title fontSize={24}>리뷰</Title>
-                    <Rating fontSize={24}>(9)</Rating>
+                    <Rating fontSize={24}>({result?.review})</Rating>
                 </TitleBox>
                 <ReviewBox>
-                    <ReviewCard/>
-                    <ReviewCard/>
+                    {
+                        reviews.map((e)=>(
+                            <ReviewCard/>
+                        ))
+                    }
                 </ReviewBox>
-                <CloseButton onClick={onClose}>닫기</CloseButton>
+                <CloseButton onClick={test}>닫기</CloseButton>
                 </Container>
             </ModalContent>
         </ModalOverlay>
     );
 };
+
 
 const ReviewBox = styled.div`
     display: flex;
