@@ -93,7 +93,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, restaurantId }) => {
                     'image': ''
                 },
                   {headers:{
-                      'Authorization': 'Bearer eyJ0eXBlIjoiSldUIiwiYWxnIjoiSFMyNTYifQ.eyJzdWIiOiJkYnN0amQwMjIyQGNhdGhvaWxjLmFjLmtyIiwicm9sZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVVNFUiJ9XSwiaWF0IjoxNzAyOTY4NTA2LCJleHAiOjE3MDM1NzMzMDZ9.R-Y83TBA5QVOEdBT5zbApOaH_evCHbHGdz8ls5XAwoA',
+                      'Authorization': token,
                       "Content-Type": "multipart/form-data"
                   },
                 },  
