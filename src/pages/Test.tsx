@@ -3,6 +3,7 @@ import React ,{useEffect, useState} from "react";
 
 import { getCookie } from "../cookie/Cookie";
 
+
 interface DataType{
     "userId": string,
     "email": string,
@@ -18,6 +19,9 @@ export default function Test(){
 
     const [data,setData] = useState<DataType[] | null>();
 
+    
+    const h = async () =>{
+      
 
     const h = async () =>{
       await axios.post(
@@ -41,6 +45,7 @@ export default function Test(){
             <button onClick={h}>
               포스트
             </button>
+            
         </>
     )
 }

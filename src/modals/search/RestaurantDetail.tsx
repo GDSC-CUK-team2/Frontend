@@ -2,156 +2,173 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import axios from "axios";
 import { getCookie } from "../../cookie/Cookie";
-
 import comment from "../../assets/image/search/comment.svg";
 import view from "../../assets/image/search/view.svg";
-import write from "../../assets/image/search/write_review.svg"
+import write from "../../assets/image/search/write_review.svg";
 import ReviewCard from "../../components/review/ReviewCard";
+import ReviewModal from "../../components/review/ReviewModal";
 
 interface ModalProps {
-    onClose: () => void;
-    restaurantId : string;
+  onClose: () => void;
+  restaurantId: string;
 }
+
 interface ResultType {
-    id : string,
-    name: string,
-    rating: string,
-    address: string,
-    food_type: string,
-    view: string,
-    review: string
-  }
+  id: string;
+  name: string;
+  rating: string;
+  address: string;
+  food_type: string;
+  view: string;
+  review: string;
+}
 
-  interface ReviewType {
-    fileNames: [],
-    reviewEntity: {
-        reviewId: string,
-        shopId: string,
-        userId: string,
-        rating: string,
-        comment: string,
-        createdDate: string,
-        updatedDate: any
-    }
-  }
-
+interface ReviewType {
+  fileNames: [];
+  reviewEntity: {
+    reviewId: string;
+    shopId: string;
+    userId: string;
+    rating: string;
+    comment: string;
+    createdDate: string;
+    updatedDate: any;
+  };
+}
 
 const Modal: React.FC<ModalProps> = ({ onClose, restaurantId }) => {
-    const [result, setResult] = useState<ResultType>();
-    const [reviews, setReviews] = useState<ReviewType[]>([]);
-    let token = getCookie('token');
-    useEffect(() => {  
-        const param = {
-            restaurant_id: {restaurantId}
-        }  
-        async function getInfo() {
-          try {
-            const response = await axios.get(
-              `http://35.216.62.134:8080/api/restaurants/${restaurantId}`,
-                {headers:{
-                    'restaurant_id': restaurantId
-                }}
-            );
-            setResult(response.data);
+  const [result, setResult] = useState<ResultType>();
+  const [reviews, setReviews] = useState<ReviewType[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-            //console.log(JSON.stringify(response))
-          } catch (error) {
-            console.log(error);
+  let token = getCookie("token");
+
+  useEffect(() => {
+    const param = {
+      restaurant_id: { restaurantId },
+    };
+    async function getInfo() {
+      try {
+        const response = await axios.get(
+          `http://35.216.62.134:8080/api/restaurants/${restaurantId}`,
+          {
+            headers: {
+              "restaurant_id": restaurantId,
+            },
           }
-        }
-
-        async function getReview() {
-            try {
-              const response = await axios.get(
-                `http://35.216.62.134:8080/api/restaurants/${restaurantId}/reviews`,
-                  {headers:{
-                      'restaurant_id': restaurantId
-                  }}
-              );
-              setReviews(response.data);
-  
-              console.log(JSON.stringify(response.data));
-              console.log('success');
-            } catch (error) {
-              console.log(error);
-            }
-          }
-
-        getInfo();
-       getReview();
-      }, []);
-
-
-      async function test(){
-        try{
-            const response = await axios.post(
-                `http://35.216.62.134:8080/api/restaurants/${restaurantId}/reviews`,
-                {
-                    'userId': 2,
-                    'rating': 'GOOD',
-                    'comment': "좋습니다 좋습니다",
-                    'image': ''
-                },
-                  {headers:{
-                      'Authorization': token,
-                      "Content-Type": "multipart/form-data"
-                  },
-                },  
-              );
-              console.log(JSON.stringify(response.data));
-        } catch(error){
-            console.log(error);
-        }
+        );
+        setResult(response.data);
+      } catch (error) {
+        console.log(error);
       }
-    return (
-        <ModalOverlay onClick={onClose}>
-            <ModalContent onClick={(e) => e.stopPropagation()} >
-                <Container>
-                <MainInfo>
-                    <MainRight>
-                        <TitleBox>
-                            <Title fontSize={32}>{result?.name}</Title>
-                            <Rating fontSize={32}>{result?.rating}</Rating>
-                        </TitleBox>
-                        <SmallIconBox>
-                            <SmallIcon src={view} alt="x" />
-                            <SmallText>{result?.view}</SmallText>
-                            <SmallIcon src={comment} alt="x" />
-                            <SmallText>{result?.review}</SmallText>
-                        </SmallIconBox>
-                    </MainRight>
-                    <BigIcon src={write} alt="x" />
-                </MainInfo>
-                <Hr />
-                <SubInfoBox>
-                    <SubBox>
-                        <SubInfoTitle>주소</SubInfoTitle>
-                        <SubInfoTitle>음식종류</SubInfoTitle>
-                    </SubBox>
-                    <SubBox>
-                        <SubInfoDetail>{result?.address}</SubInfoDetail>
-                        <SubInfoDetail>{result?.food_type.split('>')[1].trim()}</SubInfoDetail>
-                    </SubBox>
-                </SubInfoBox>
-                <Hr />
-                <TitleBox>
-                    <Title fontSize={24}>리뷰</Title>
-                    <Rating fontSize={24}>({result?.review})</Rating>
-                </TitleBox>
-                <ReviewBox>
-                    {
-                        reviews.map((e)=>(
-                            <ReviewCard/>
-                        ))
-                    }
-                </ReviewBox>
-                <CloseButton onClick={test}>닫기</CloseButton>
-                </Container>
-            </ModalContent>
-        </ModalOverlay>
-    );
-};
+    }
 
+    async function getReview() {
+      try {
+        const response = await axios.get(
+          `http://35.216.62.134:8080/api/restaurants/${restaurantId}/reviews`,
+          {
+            headers: {
+              "restaurant_id": restaurantId,
+            },
+          }
+        );
+        setReviews(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    getInfo();
+    getReview();
+  }, []);
+
+  const postReview = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("userId", "3");
+      formData.append("rating", "PERFECT");
+      formData.append("comment", "좋습니다 좋습니다");
+      formData.append("image", "");
+
+      const response = await axios.post(
+        `http://35.216.62.134:8080/api/restaurants/${restaurantId}/reviews`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("Review posted successfully:", response.data);
+    } catch (error) {
+      console.error("Error posting review:", error);
+    }
+  };
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <>
+      {isModalOpen && (
+        <ReviewModal onClose={closeModal} onSubmit={postReview} />
+      )}
+      <ModalOverlay onClick={onClose}>
+        <ModalContent onClick={(e) => e.stopPropagation()}>
+          <Container>
+            <MainInfo>
+              <MainRight>
+                <TitleBox>
+                  <Title fontSize={32}>{result?.name}</Title>
+                  <Rating fontSize={32}>{result?.rating}</Rating>
+                </TitleBox>
+                <SmallIconBox>
+                  <SmallIcon src={view} alt="x" />
+                  <SmallText>{result?.view}</SmallText>
+                  <SmallIcon src={comment} alt="x" />
+                  <SmallText>{result?.review}</SmallText>
+                </SmallIconBox>
+              </MainRight>
+              <BigIcon src={write} alt="x" onClick={openModal} />
+            </MainInfo>
+            <Hr />
+            <SubInfoBox>
+              <SubBox>
+                <SubInfoTitle>주소</SubInfoTitle>
+                <SubInfoTitle>음식종류</SubInfoTitle>
+              </SubBox>
+              <SubBox>
+                <SubInfoDetail>{result?.address}</SubInfoDetail>
+                <SubInfoDetail>
+                  {result?.food_type.split(">")[1].trim()}
+                </SubInfoDetail>
+              </SubBox>
+            </SubInfoBox>
+            <Hr />
+            <TitleBox>
+              <Title fontSize={24}>리뷰</Title>
+              <Rating fontSize={24}>({result?.review})</Rating>
+            </TitleBox>
+            <ReviewBox>
+              {reviews.map((e, i) => (
+                <ReviewCard data={reviews[i]} />
+              ))}
+            </ReviewBox>
+            <CloseButton onClick={onClose}>닫기</CloseButton>
+          </Container>
+        </ModalContent>
+      </ModalOverlay>
+    </>
+  );
+};
 
 const ReviewBox = styled.div`
     display: flex;
