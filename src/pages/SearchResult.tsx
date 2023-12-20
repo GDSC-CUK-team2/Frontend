@@ -7,7 +7,7 @@ import TopNavBar from "../components/common/TopNavBar";
 import ResultCard from "../components/search/ResultCard";
 import styled from "styled-components";
 import cross_curtley from "../assets/image/search/cross_curtley.svg";
-import MapBox from "../components/search/MapBox";
+
 import Recommended from "../components/search/Recommended";
 
 interface ResultType {
@@ -18,6 +18,14 @@ interface ResultType {
   food_type: string;
   view: string;
   review: string;
+  x: string;
+  y: string;
+}
+
+interface Coordinate {
+  name: string;
+  x: string;
+  y: string;
 }
 
 export default function Search() {
@@ -26,12 +34,15 @@ export default function Search() {
   const [category, setCategory] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   useEffect(() => {
+    console.log('run');
     async function getInfo() {
       try {
         const response = await axios.get(
           `http://35.216.62.134:8080/api/restaurants?keyword=${keyword}&page=45`
         );
         setResult([...response.data.results]);
+        console.log(JSON.stringify(response.data));
+        console.log('asdf');
       } catch (error) {
         console.log(error);
       }
@@ -41,6 +52,7 @@ export default function Search() {
   }, [keyword]);
 
   function handleFilter(props: string) {
+    console.log('a')
     if (category !== props) {
       setCategory(props);
       setSelectedCategory(props);
@@ -58,6 +70,19 @@ export default function Search() {
       return e.food_type.split(">")[1].trim() === category;
     }
   });
+  const coordinates: Coordinate[] = filteredResults.map((e) => ({
+    name: e.name,
+    x: e.x, // 이 값이 실제로는 어떻게 정의되어 있는지에 따라 수정이 필요할 수 있습니다.
+    y: e.y, // 위와 동일하게 수정이 필요할 수 있습니다.
+  }));
+  // const coordinates: Coordinate[] = [
+  //   { name: "Place1", x: "33.5563", y: "126.79581" },
+  //   { name: "Place2", x: "33.5564", y: "126.79582" },
+  //   // 추가 좌표 데이터...
+  // ];
+  function check(){
+    console.log(coordinates);
+  }
 
   return (
     <>
@@ -74,7 +99,8 @@ export default function Search() {
             {["한식", "중식", "일식", "양식"].map((categoryItem) => (
               <CategoryButton
                 key={categoryItem}
-                onClick={() => handleFilter(categoryItem)}
+                //onClick={() => handleFilter(categoryItem)}
+                onClick={check}
                 selected={selectedCategory === categoryItem}
               >
                 {categoryItem}
@@ -88,7 +114,7 @@ export default function Search() {
           </ResultCards>
         </SearchResults>
         <SubInfos>
-          <MapBox />
+          {/* <MapBox data = {coordinates}/> */}
           <Recommended />
         </SubInfos>
       </Container>

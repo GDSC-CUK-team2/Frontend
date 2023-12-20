@@ -1,21 +1,57 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+import { getCookie, setCookie } from "../../cookie/Cookie";
 
-export default function ReviewCard() {
+interface ReviewProps{
+    data: any;
+}
+
+interface User {
+    nickname : string,
+    profileUrl : string,
+  }
+
+
+const ReviewCard: React.FC<ReviewProps> = ({ data }) =>{
+    const[userData,setUserData] = useState<User>();
+
+    useEffect(() => {
+        let token = getCookie('token');
+        let userId = data.reviewEntity.userId;
+        axios
+            .get(`http://35.216.62.134:8080/api/user/${userId}/profile`, 
+                 {
+                headers : {
+                    'Authorization' : `Bearer ${token}`
+                },
+            }
+            )
+            .then((response) => {
+                console.log(response.data.userId);
+                setUserData(response.data);
+            })
+            .catch((error) => {
+                console.log('에러:', error);
+                console.log('에러:', error.response);
+            });
+    }, []);
+    let reviewData = data.reviewEntity;
+    
     return (
         <>
         <Container>
             <ProfileBox>
-                <ProfileImage />
-                <ProfileText>닉네임</ProfileText>
-                <ProfileText>시간</ProfileText>
+                <ProfileImage>
+                <img src={userData?.profileUrl} alt="프로필 이미지" />
+                </ProfileImage>
+                <ProfileText>{userData?.nickname}</ProfileText>
+                <ProfileText>{reviewData.createdDate.substr(0,10)}</ProfileText>
             </ProfileBox>
             <ReviewBox>
-                <ReviewText>sdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdfsdafasfsdafasdf</ReviewText>
+                <ReviewText>{reviewData.comment}</ReviewText>
                 <ImageBox>
-                    <ReviewImage></ReviewImage>
-                    <ReviewImage></ReviewImage>
-                    <ReviewImage></ReviewImage>
-                    <ReviewImage></ReviewImage>
+            
                 </ImageBox>
             </ReviewBox>
         </Container>
@@ -23,6 +59,7 @@ export default function ReviewCard() {
         </>
     )
 }
+export default ReviewCard
 
 const Container = styled.div`
     display: flex;
@@ -39,11 +76,18 @@ const ProfileBox = styled.div`
     margin-right: 32px;
 `
 const ProfileImage = styled.div`
-    width: 72px;
+  width: 72px;
   height: 72px;
   background-color: #E5E5E5;
   border-radius: 50%;
-`
+  overflow: hidden;  // 이미지가 넘치는 경우를 대비해 추가
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  // 이미지 비율 유지 및 가득 채우기
+  }
+`;
 const ProfileText = styled.div`
     font-size: 12px;
     font-weight: 400;
