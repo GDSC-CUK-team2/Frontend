@@ -9,6 +9,8 @@ import styled from "styled-components";
 import cross_curtley from "../assets/image/search/cross_curtley.svg";
 import MapBox from "../components/search/MapBox";
 import Recommended from "../components/search/Recommended";
+import Map from "../components/map/Map";
+import MapContainer from "../components/map/Map";
 
 interface ResultType {
   id: string;
@@ -18,6 +20,8 @@ interface ResultType {
   food_type: string;
   view: string;
   review: string;
+  x:number;
+  y:number;
 }
 
 export default function Search() {
@@ -25,6 +29,13 @@ export default function Search() {
   const [result, setResult] = useState<ResultType[]>([]);
   const [category, setCategory] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("");
+
+  const [markers, setMarkers] = useState<{ x: number; y: number }[]>([]);
+
+  const addMarker = (x: number, y: number) => {
+    setMarkers((prevMarkers) => [...prevMarkers, { x, y }]);
+  };
+
   useEffect(() => {
     async function getInfo() {
       try {
@@ -33,6 +44,14 @@ export default function Search() {
         );
         console.log(response)
         setResult([...response.data.results]);
+        setMarkers([]);
+        if (response.data.results.length > 0) {
+          response.data.results.forEach((resultItem: any) => {
+            if (resultItem.x && resultItem.y) {
+              addMarker(resultItem.x, resultItem.y);
+            }
+          });
+        }
       } catch (error) {
         console.log(error);
       }
@@ -51,7 +70,7 @@ export default function Search() {
     }
     
   }
-
+  console.log(markers)
   const filteredResults = result.filter((e) => {
     if (category === "") {
       return true;
@@ -89,7 +108,7 @@ export default function Search() {
           </ResultCards>
         </SearchResults>
         <SubInfos>
-          <MapBox />
+        <MapContainer data={markers}/> 
           <Recommended />
         </SubInfos>
       </Container>

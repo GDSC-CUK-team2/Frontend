@@ -1,10 +1,11 @@
 import React from "react";
-import Map from "../components/map/map";
+import Map from "../components/map/Map";
 
 function KakaoMap() {
   return (
     <div className="kakaomap">
-      <Map />
+      {/* <Map  x={127.027534918874}
+            y={37.4996136518153}   /> */}
     </div>
   );
 }

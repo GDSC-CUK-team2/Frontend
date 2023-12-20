@@ -1,64 +1,61 @@
-import React, { useEffect } from 'react'
-import styled from 'styled-components'
+import { useEffect, useState } from 'react';
 
 declare global {
   interface Window {
-    kakao: any
+     kakao: any;
   }
 }
 
-const Map = styled.div`
-  width: 100%;
-  height: 300px;
-`
+interface MapContainerProps {
+  data: { x: number; y: number }[];
+}
 
-function MapContainer() {
-  const markers: any[] = [
-    new window.kakao.maps.LatLng(33.45023, 126.572965),
-    new window.kakao.maps.LatLng(33.455529, 126.561838),
-  ]
+const MapContainer: React.FC<MapContainerProps> = ({ data }) => {
 
-  const setMarkers = (map: any) => {
-    markers.forEach((obj) => {
-      new window.kakao.maps.Marker({
-        map: map,
-        position: obj,
-        title: '테스트',
-      })
-    })
-  }
+  const [centerMarker,setCenterMarker] = useState<any>();
 
-  const init = (map: any) => {
-    window.kakao.maps.event.addListener(
-      map,
-      'click',
-      function (mouseEvent: any) {
-        // 클릭한 위치에 마커를 표시합니다
-        console.log(mouseEvent.latLng)
-      },
-    )
-  }
+  useEffect(()=>{
+    setCenterMarker(data[0]);
+  },[data])
+
 
   useEffect(() => {
-    const container = document.getElementById('map')
-    const mainPosition = new window.kakao.maps.LatLng(33.453502, 126.569894)
-    const options = {
-      center: mainPosition, // 지도의 중심 좌표
-      level: 5, // 지도의 레벨(확대, 축소 정도)
+    mapscript();
+  }, []);
+
+  const mapscript = () => {
+    const container = document.getElementById("map");
+
+    if (!container) {
+      console.error('Map container element not found');
+      return;
     }
+  
+    const options = {
+      center: new window.kakao.maps.LatLng(),
+      level: 5,
+    };
 
-    const mainMarker = new window.kakao.maps.Marker({
-      position: mainPosition,
-    })
+    // Map
+    const map = new window.kakao.maps.Map(container, options);
 
-    const map = new window.kakao.maps.Map(container, options)
 
-    init(map)
-    mainMarker.setMap(map) // 메인 위치 set
-    setMarkers(map) // 마커 배열 set
-  }, [])
+    data.forEach((el) => {
+      // Check if 'lat' and 'lng' are defined before creating the marker
+      if (el.y !== undefined && el.x !== undefined) {
+        // Create a marker
+        new window.kakao.maps.Marker({
+          map,
+          position: new window.kakao.maps.LatLng(el.y, el.x),
+          
+        });
+      } else {
+        console.error('Invalid data format. Missing lat or lng property:', el);
+      }
+    });
+  };
 
-  return <Map id="map" />
-}
+  return <div id="map" style={{ width: "100%", height: "400px" }} />;
+};
 
-export default MapContainer
+export default MapContainer;
