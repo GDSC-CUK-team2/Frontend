@@ -108,7 +108,8 @@ export default function Search() {
           </ResultCards>
         </SearchResults>
         <SubInfos>
-        <MapContainer data={markers}/> 
+        {markers.length ? <MapContainer data={markers}/>  : <></>}  
+        
           <Recommended />
         </SubInfos>
       </Container>
