@@ -6,6 +6,7 @@ import Search from './pages/SearchResult';
 
 // api테스하는 페이지
 import Test from './pages/Test';
+import KakaoMap from './pages/Kakao';
 function App() {
   return (
 
@@ -14,6 +15,7 @@ function App() {
       <Route path='/search/:keyword' element={<Search />} />
 
       <Route path='/test' element={<Test />} />
+      <Route path='/kakao' element={<KakaoMap />} />
     </Routes>
   );
 }

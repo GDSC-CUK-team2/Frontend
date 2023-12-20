@@ -149,9 +149,9 @@ background-color: #f1f1f1;
 export default function Profile({onClose} : ProfileProps){
 
     const {myData,data} = getMyProfile();
+    const {userData} = getProfile(3);
 
-    console.log(myData);
-    console.log(data)
+    console.log(userData)
 
     return(
         <ModalBackground>

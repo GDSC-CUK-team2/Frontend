@@ -78,7 +78,7 @@ color : #9C9C9C;
 
 `
 
-export default function Hot(){
+export default function Category(){
 
     return(
         <>

@@ -125,7 +125,7 @@ export default function Login({onClose} : LoginProps) {
         console.log(loginResult)
         if (loginResult.status === 200) {
           // 로그인 성공 시 모달 닫기
-          window.location.replace("/")
+          window.location.replace("/Frontend")
 
           
         }
