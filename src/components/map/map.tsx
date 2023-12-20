@@ -14,7 +14,7 @@ const MapContainer: React.FC<MapContainerProps> = ({ data }) => {
 
   useEffect(() => {
     mapscript();
-  }, []);
+  }, [data]);
 
   const mapscript = () => {
     const container = document.getElementById("map");
